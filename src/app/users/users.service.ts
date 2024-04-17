@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { DeleteResult } from 'kysely';
 import { UnsanitizedUser, User } from './user.model';
 import { UsersRepository } from './users.repository';
-import { ValidationService } from 'src/validation/validation.service';
+import { ValidationService } from 'src/app/validation/validation.service';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { CreateUserDto } from './dto/create-user.dto';

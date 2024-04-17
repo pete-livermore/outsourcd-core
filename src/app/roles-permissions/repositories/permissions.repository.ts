@@ -1,4 +1,4 @@
-import { Database } from 'src/database/database';
+import { Database } from 'src/app/database/database';
 import { CreatePermissionDto } from '../dto/create-permission.dto';
 import { UpdatePermissionDto } from '../dto/update-permission.dto';
 import { Permission } from '../models/permission.model';

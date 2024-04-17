@@ -4,7 +4,7 @@ import { User, UserModelData } from './user.model';
 import { Database } from '../database/database';
 import { ConflictException } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
+import { PostgresErrorCode } from 'src/app/database/postgres-error-code.enum';
 import { DatabaseError } from 'pg';
 
 describe('The UsersRepository class', () => {

@@ -9,7 +9,7 @@ import {
 } from 'kysely';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { Database } from './database/database';
+import { Database } from './app/database/database';
 
 config();
 const configService = new ConfigService();

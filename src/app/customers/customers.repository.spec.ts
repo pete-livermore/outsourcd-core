@@ -4,7 +4,7 @@ import { Customer, CustomerModelData } from './customer.model';
 import { Database } from '../database/database';
 import { ConflictException } from '@nestjs/common';
 import { CreateCustomerDto } from './dto/create-customer.dto';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
+import { PostgresErrorCode } from 'src/app/database/postgres-error-code.enum';
 import { DatabaseError } from 'pg';
 
 describe('The CustomersRepository class', () => {

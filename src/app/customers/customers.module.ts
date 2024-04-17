@@ -3,7 +3,7 @@ import { CustomersController } from './customers.controller';
 import { CustomersResolver } from './customers.resolver';
 import { CustomersService } from './customers.service';
 import { ConfigModule } from '@nestjs/config';
-import { ValidationService } from 'src/validation/validation.service';
+import { ValidationService } from 'src/app/validation/validation.service';
 import { CustomersRepository } from './customers.repository';
 
 @Module({

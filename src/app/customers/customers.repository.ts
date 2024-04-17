@@ -6,8 +6,8 @@ import { Database, Tables } from '../database/database';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { ExpressionBuilder } from 'kysely';
 import { Customers } from 'src/kysely-types';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
-import { isDatabaseError } from 'src/database/error';
+import { PostgresErrorCode } from 'src/app/database/postgres-error-code.enum';
+import { isDatabaseError } from 'src/app/database/error';
 import { PopulateCustomerDto } from './dto/populate-customer.dto';
 import { jsonArrayFrom } from 'kysely/helpers/postgres';
 

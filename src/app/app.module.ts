@@ -3,7 +3,7 @@ import { CacheModule } from '@nestjs/cache-manager';
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { GraphQLModule } from '@nestjs/graphql';
-import { envValidationSchema } from 'src/config/validation-schema';
+import { envValidationSchema } from 'src/app/config/validation-schema';
 import { NestjsFormDataModule } from 'nestjs-form-data';
 import { join } from 'path';
 import type { RedisClientOptions } from 'redis';

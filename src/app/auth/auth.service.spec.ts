@@ -1,7 +1,7 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { Test, TestingModule } from '@nestjs/testing';
-import { UnsanitizedUser } from 'src/users/user.model';
+import { UnsanitizedUser } from 'src/app/users/user.model';
 import { UsersService } from '../users/users.service';
 import { AuthService } from './auth.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';

@@ -8,15 +8,15 @@ import {
   Put,
   Query,
 } from '@nestjs/common';
-import { RequirePermissions } from 'src/roles-permissions/permissions.decorator';
+import { RequirePermissions } from 'src/app/roles-permissions/permissions.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { FindOneParams } from 'src/common/dto/req-params';
+import { FindOneParams } from 'src/app/common/dto/req-params';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { PopulateParams } from 'src/common/dto/populate-params';
-import { FilterParams } from 'src/common/dto/filter-params';
-import { PaginationParams } from 'src/common/dto/pagination-params';
-import { Page, PageMetaDto } from 'src/common/dto/page.dto';
+import { PopulateParams } from 'src/app/common/dto/populate-params';
+import { FilterParams } from 'src/app/common/dto/filter-params';
+import { PaginationParams } from 'src/app/common/dto/pagination-params';
+import { Page, PageMetaDto } from 'src/app/common/dto/page.dto';
 
 @Controller('users')
 export class UsersController {

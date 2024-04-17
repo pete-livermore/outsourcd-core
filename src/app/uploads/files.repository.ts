@@ -1,4 +1,4 @@
-import { Database } from 'src/database/database';
+import { Database } from 'src/app/database/database';
 import { CreateFileDto } from './dto/create-file.dto';
 import { FindUploadOptionsDto } from './dto/find-options.dto';
 import { UpdateUploadDto } from './dto/update-upload.dto';

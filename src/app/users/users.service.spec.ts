@@ -1,15 +1,15 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { plainToInstance } from 'class-transformer';
 import { AuthService } from '../auth/auth.service';
-import { CreateCustomerDto } from './dto/create-customer.dto';
-import { Customer } from './customer.model';
-import { CustomersRepository } from './customers.repository';
-import { CustomersService } from './customers.service';
+import { CreateUserDto } from './dto/create-user.dto';
+import { User } from './user.model';
+import { UsersRepository } from './users.repository';
+import { UsersService } from './users.service';
 import * as bcrypt from 'bcrypt';
-import { ValidationService } from 'src/validation/validation.service';
+import { ValidationService } from 'src/app/validation/validation.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { CustomerFiltersDto } from './dto/customer-filters.dto';
-import { PopulateCustomerDto } from './dto/populate-customer.dto';
+import { UserFiltersDto } from './dto/user-filters.dto';
+import { PopulateUserDto } from './dto/populate-user.dto';
 
 jest.mock('bcrypt', () => ({
   ...jest.requireActual('bcrypt'),
@@ -27,9 +27,9 @@ jest.mock('class-transformer', () => ({
   plainToInstance: jest.fn(),
 }));
 
-describe('CustomersService', () => {
-  let customersService: CustomersService;
-  let customersRepository: CustomersRepository;
+describe('UsersService', () => {
+  let usersService: UsersService;
+  let usersRepository: UsersRepository;
   let validationService: ValidationService;
   let configService: ConfigService;
 
@@ -42,7 +42,7 @@ describe('CustomersService', () => {
           useValue: { validateDto: jest.fn() },
         },
         {
-          provide: CustomersRepository,
+          provide: UsersRepository,
           useValue: {
             create: jest.fn(),
             getAll: jest.fn(),
@@ -52,62 +52,58 @@ describe('CustomersService', () => {
             delete: jest.fn(),
           },
         },
-        CustomersService,
+        UsersService,
         { provide: AuthService, useValue: { signIn: jest.fn() } },
       ],
     }).compile();
 
-    customersService = module.get<CustomersService>(CustomersService);
-    customersRepository = module.get<CustomersRepository>(CustomersRepository);
+    usersService = module.get<UsersService>(UsersService);
+    usersRepository = module.get<UsersRepository>(UsersRepository);
     configService = module.get<ConfigService>(ConfigService);
     validationService = module.get<ValidationService>(ValidationService);
   });
 
   it('it should be defined', () => {
-    expect(CustomersService).toBeDefined();
+    expect(usersService).toBeDefined();
   }),
     // Create method
     describe('Create method', () => {
-      const createCustomerDto: CreateCustomerDto = {
+      const createUserDto: CreateUserDto = {
         email: 'test@example.com',
         password: 'password',
         firstName: 'Test',
-        lastName: 'Customer',
+        lastName: 'User',
         role: 3,
       };
-      it("should call the repository create function and return the result when validation passes and there isn't an existing Customer with that email", async () => {
-        jest.mocked(plainToInstance).mockReturnValue(createCustomerDto);
+      it("should call the repository create function and return the result when validation passes and there isn't an existing user with that email", async () => {
+        jest.mocked(plainToInstance).mockReturnValue(createUserDto);
         jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
-        const CustomerFromDb = new Customer({
+        const userFromDb = new User({
           id: 3,
           email: 'test@example.com',
           first_name: 'test',
-          last_name: 'Customer',
-          is_confirmed: false,
-          address: '',
-          city: '',
-          postcode: '',
-          country: '',
+          last_name: 'User',
+          role: 2,
           created_at: new Date(),
           updated_at: new Date(),
         });
 
         const createSpy = jest
-          .spyOn(customersRepository, 'create')
-          .mockImplementation(async () => CustomerFromDb);
+          .spyOn(usersRepository, 'create')
+          .mockImplementation(async () => userFromDb);
 
-        const result = await customersService.create(createCustomerDto);
+        const result = await usersService.create(createUserDto);
 
         expect(createSpy).toHaveBeenCalledWith({
-          ...createCustomerDto,
+          ...createUserDto,
           password:
             '$2y$10$FtMJ2TEzs4pe0VSU1hu7l.4Mw4u/NFR2lZec2VTdTeK1j9obgt6fG',
         });
-        expect(result).toEqual(CustomerFromDb);
+        expect(result).toEqual(userFromDb);
       });
 
-      it("should hash the customer's plain text password before storing it", async () => {
+      it("should hash the user's plain text password before storing it", async () => {
         jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
         jest.spyOn(configService, 'get').mockImplementation((key: string) => {
@@ -119,9 +115,9 @@ describe('CustomersService', () => {
 
         const hashSpy = jest.spyOn(bcrypt, 'hash');
 
-        await customersService.create(createCustomerDto);
+        await usersService.create(createUserDto);
 
-        expect(hashSpy).toHaveBeenCalledWith(createCustomerDto.password, 5);
+        expect(hashSpy).toHaveBeenCalledWith(createUserDto.password, 5);
       });
 
       it('should throw when validation fails', async () => {
@@ -129,49 +125,47 @@ describe('CustomersService', () => {
           .spyOn(validationService, 'validateDto')
           .mockRejectedValue(new Error('ValidationError'));
 
-        await expect(
-          customersService.create(createCustomerDto),
-        ).rejects.toThrow(Error);
+        await expect(usersService.create(createUserDto)).rejects.toThrow(Error);
       });
     });
 
   // Get all method
   describe('getAll method', () => {
-    it('should call customersRepository.getAll with undefined when no params are passed', async () => {
+    it('should call usersRepository.getAll with undefined when no params are passed', async () => {
       jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
-      await customersService.getAll();
+      await usersService.getAll();
 
-      expect(jest.spyOn(customersRepository, 'getAll')).toHaveBeenCalledWith(
+      expect(jest.spyOn(usersRepository, 'getAll')).toHaveBeenCalledWith(
         undefined,
       );
     });
 
-    it('should call customersRepository.getAll with filters when provided', async () => {
-      const filters: CustomerFiltersDto = {
+    it('should call usersRepository.getAll with filters when provided', async () => {
+      const filters: UserFiltersDto = {
         email: 'email@email.com',
       };
 
       jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
-      await customersService.getAll({ filters });
+      await usersService.getAll({ filters });
 
-      expect(jest.spyOn(customersRepository, 'getAll')).toHaveBeenCalledWith({
+      expect(jest.spyOn(usersRepository, 'getAll')).toHaveBeenCalledWith({
         filters,
       });
     });
 
-    it('should call customersRepository.getAll with populate param when provided', async () => {
-      const populate: PopulateCustomerDto = {
-        orders: true,
+    it('should call usersRepository.getAll with populate param when provided', async () => {
+      const populate: PopulateUserDto = {
+        hostedProperties: true,
         image: true,
       };
 
       jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
-      await customersService.getAll({ populate });
+      await usersService.getAll({ populate });
 
-      expect(jest.spyOn(customersRepository, 'getAll')).toHaveBeenCalledWith({
+      expect(jest.spyOn(usersRepository, 'getAll')).toHaveBeenCalledWith({
         populate,
       });
     });
@@ -182,24 +176,25 @@ describe('CustomersService', () => {
         .mockRejectedValue(new Error('ValidationError'));
 
       await expect(
-        customersService.getAll({ populate: { orders: true } }),
+        usersService.getAll({ populate: { hostedProperties: true } }),
       ).rejects.toThrow(Error);
     });
   });
 
   // FindById method
   describe('findById', () => {
-    it('should call customersRepository.findOneById when validation passes', async () => {
+    it('should call usersRepository.findOneById when validation passes', async () => {
       const id = 1;
 
       jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
       try {
-        await customersService.findById(id);
+        await usersService.findById(id);
       } catch (error) {
-        expect(
-          jest.spyOn(customersRepository, 'findById'),
-        ).toHaveBeenCalledWith(id, undefined);
+        expect(jest.spyOn(usersRepository, 'findById')).toHaveBeenCalledWith(
+          id,
+          undefined,
+        );
       }
     });
   });

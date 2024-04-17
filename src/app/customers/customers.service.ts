@@ -2,7 +2,7 @@ import { Injectable, NotFoundException } from '@nestjs/common';
 import { DeleteResult } from 'kysely';
 import { UnsanitizedCustomer, Customer } from './customer.model';
 import { CustomersRepository } from './customers.repository';
-import { ValidationService } from 'src/validation/validation.service';
+import { ValidationService } from 'src/app/validation/validation.service';
 import * as bcrypt from 'bcrypt';
 import { ConfigService } from '@nestjs/config';
 import { CreateCustomerDto } from './dto/create-customer.dto';

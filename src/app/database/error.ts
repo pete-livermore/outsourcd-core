@@ -1,5 +1,5 @@
 import { DatabaseError as PgDatabaseError } from 'pg';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
+import { PostgresErrorCode } from 'src/app/database/postgres-error-code.enum';
 
 export interface DatabaseError {
   code: PostgresErrorCode;

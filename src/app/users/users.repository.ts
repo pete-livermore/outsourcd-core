@@ -7,8 +7,8 @@ import { ConflictException, Injectable } from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder } from 'kysely';
 import { Users } from 'src/kysely-types';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
-import { isDatabaseError } from 'src/database/error';
+import { PostgresErrorCode } from 'src/app/database/postgres-error-code.enum';
+import { isDatabaseError } from 'src/app/database/error';
 import { PopulateUserDto } from './dto/populate-user.dto';
 
 type UserTableExpression = ExpressionBuilder<

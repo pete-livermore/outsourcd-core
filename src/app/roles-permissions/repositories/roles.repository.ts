@@ -1,4 +1,4 @@
-import { Database } from 'src/database/database';
+import { Database } from 'src/app/database/database';
 import { CreateRoleDto } from '../dto/create-role.dto';
 import { Role } from '../models/role.model';
 import { PopulateRoleDto } from '../dto/find-roles-params.dto';

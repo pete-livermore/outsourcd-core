@@ -1,8 +1,8 @@
 import { INestApplication, ValidationPipe } from '@nestjs/common';
 import { Test } from '@nestjs/testing';
 import * as request from 'supertest';
-import { UsersService } from '../src/users/users.service';
-import { AppModule } from 'src/app.module';
+import { UsersService } from '../src/app/users/users.service';
+import { AppModule } from 'src/app/app.module';
 import * as authenticatedUser from './fixtures/authenticated-user.json';
 import * as users from './fixtures/users.json';
 

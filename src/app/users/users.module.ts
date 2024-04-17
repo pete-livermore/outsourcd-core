@@ -3,7 +3,7 @@ import { UsersController } from './users.controller';
 import { UsersResolver } from './users.resolver';
 import { UsersService } from './users.service';
 import { ConfigModule } from '@nestjs/config';
-import { ValidationService } from 'src/validation/validation.service';
+import { ValidationService } from 'src/app/validation/validation.service';
 import { UsersRepository } from './users.repository';
 
 @Module({
