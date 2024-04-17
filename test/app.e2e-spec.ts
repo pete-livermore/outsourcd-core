@@ -1,9 +1,9 @@
 import { INestApplication } from '@nestjs/common';
 import { Test, TestingModule } from '@nestjs/testing';
 import * as request from 'supertest';
-import { AppModule } from '../src/app.module';
-import { DatabaseModule } from 'src/database/database.module';
-import { Database } from 'src/database/database';
+import { AppModule } from '../src/app/app.module';
+import { DatabaseModule } from 'src/app/database/database.module';
+import { Database } from 'src/app/database/database';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
