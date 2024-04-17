@@ -1,0 +1,18 @@
+[
+  {
+    "id": 32,
+    "email": "test_user_2@manageable.works",
+    "role": 3,
+    "first_name": "Test",
+    "last_name": "User",
+    "is_onboarded": true
+  },
+  {
+    "id": 500,
+    "email": "test_user_3@manageable.works",
+    "role": 2,
+    "first_name": "Test",
+    "last_name": "User",
+    "is_onboarded": true
+  }
+]
