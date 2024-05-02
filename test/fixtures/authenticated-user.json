@@ -1,0 +1,9 @@
+{
+  "id": 500,
+  "password": "$2b$10$e0lXtn/crcZrsRM/YYt6n.OF1CdvA0pL45T..IyFmOXlRva17cbWy",
+  "email": "test_user@manageable.works",
+  "role": 1,
+  "first_name": "Test",
+  "last_name": "User",
+  "is_onboarded": true
+}

@@ -1,0 +1,20 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Query {
+  getUser(id: Int!): UserObject!
+  getUsers: [UserObject!]!
+}
+
+type UserObject {
+  """User's email address"""
+  email: String
+
+  """First name of user"""
+  firstName: String
+  id: Int!
+
+  """Surname of user"""
+  lastName: String
+}
