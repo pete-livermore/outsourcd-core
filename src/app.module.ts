@@ -22,7 +22,7 @@ import { UploadsModule } from './uploads/uploads.module';
 import { UsersModule } from './users/users.module';
 import { ValidationService } from './validation/validation.service';
 import { BullModule } from '@nestjs/bull';
-import { BookingsModule } from './bookings/bookings.module';
+import { JobsModule } from './jobs/jobs.module';
 
 @Module({
   imports: [
@@ -91,7 +91,7 @@ import { BookingsModule } from './bookings/bookings.module';
     NestjsFormDataModule,
     NotificationModule,
     AdminModule,
-    BookingsModule,
+    JobsModule,
   ],
   controllers: [AppController],
   providers: [AppService, SettingsService, ValidationService],

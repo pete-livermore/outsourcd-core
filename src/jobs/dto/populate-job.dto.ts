@@ -1,14 +1,14 @@
 import { Expose } from 'class-transformer';
 import { IsBoolean, IsOptional } from 'class-validator';
 
-export class PopulateCustomerDto {
+export class PopulateJobDto {
   @Expose()
   @IsOptional()
   @IsBoolean()
-  orders?: boolean;
+  applicants?: boolean;
 
   @Expose()
   @IsOptional()
   @IsBoolean()
-  image?: boolean;
+  company?: boolean;
 }

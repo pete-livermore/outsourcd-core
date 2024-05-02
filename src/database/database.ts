@@ -4,10 +4,13 @@ import {
   Permissions as PermissionsTable,
   Roles as RolesTable,
   Users as UsersTable,
-  Customers as CustomersTable,
-  CustomersOrders as CustomersOrdersTable,
-  Orders as OrdersTable,
+  Jobs as JobsTable,
+  Skills as SkillsTable,
+  JobsSkills as JobsSkillsTable,
+  UsersJobs as UsersJobsTable,
+  UsersSkills as UsersSkillsTable,
   RolesPermissions as RolesPermissionsTable,
+  Companies as CompaniesTable,
 } from 'src/kysely-types';
 
 export interface Tables {
@@ -16,9 +19,12 @@ export interface Tables {
   roles: RolesTable;
   permissions: PermissionsTable;
   roles_permissions: RolesPermissionsTable;
-  customers: CustomersTable;
-  orders: OrdersTable;
-  customers_orders: CustomersOrdersTable;
+  jobs: JobsTable;
+  skills: SkillsTable;
+  jobs_skills: JobsSkillsTable;
+  users_skills: UsersSkillsTable;
+  users_jobs: UsersJobsTable;
+  companies: CompaniesTable;
 }
 
 export class Database extends Kysely<Tables> {}

@@ -44,7 +44,7 @@
         "transient": false,
         "exported": false,
         "token": "JwtModule",
-        "initTime": 1.5206249999999955
+        "initTime": 1.562249999999949
       }
     },
     "113063124": {
@@ -101,7 +101,7 @@
         "transient": false,
         "exported": true,
         "token": "GraphQLAstExplorer",
-        "initTime": 1.8903750000000628
+        "initTime": 1.9901250000000346
       }
     },
     "203550704": {
@@ -117,7 +117,7 @@
         "transient": false,
         "exported": true,
         "token": "ExternalContextCreator",
-        "initTime": 2.797416999999996
+        "initTime": 2.8583750000000236
       }
     },
     "206199259": {
@@ -159,7 +159,23 @@
         "transient": false,
         "exported": false,
         "token": "InternalCoreModule",
-        "initTime": 3.083250000000021
+        "initTime": 3.2072089999999207
+      }
+    },
+    "232168596": {
+      "id": "232168596",
+      "label": "ApplicationConfig",
+      "parent": "-781526225",
+      "metadata": {
+        "type": "provider",
+        "internal": true,
+        "sourceModuleName": "JobsModule",
+        "durable": false,
+        "static": true,
+        "scope": 0,
+        "transient": false,
+        "exported": false,
+        "token": "ApplicationConfig"
       }
     },
     "233936880": {
@@ -222,7 +238,7 @@
         "transient": false,
         "exported": true,
         "token": "GraphQLTypesLoader",
-        "initTime": 1.8889589999999998
+        "initTime": 1.9882090000000971
       }
     },
     "303302557": {
@@ -265,22 +281,6 @@
         "global": false,
         "dynamic": false,
         "internal": false
-      }
-    },
-    "392289451": {
-      "id": "392289451",
-      "label": "ValidationService",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": false,
-        "token": "ValidationService",
-        "initTime": 1.3977909999999838
       }
     },
     "410228892": {
@@ -344,7 +344,7 @@
         "transient": false,
         "exported": false,
         "token": "BullModule",
-        "initTime": 2.1930419999999913
+        "initTime": 2.2819999999999254
       }
     },
     "555176277": {
@@ -370,7 +370,7 @@
         "transient": false,
         "exported": false,
         "token": "EnumDefinitionFactory",
-        "initTime": 1.7579579999999169
+        "initTime": 1.8269999999999982
       }
     },
     "579567951": {
@@ -463,7 +463,7 @@
         "transient": false,
         "exported": true,
         "token": "Reflector",
-        "initTime": 3.0086659999999483
+        "initTime": 3.1177079999999933
       }
     },
     "705219300": {
@@ -480,22 +480,6 @@
         "transient": false,
         "exported": false,
         "token": "ModuleRef"
-      }
-    },
-    "778240299": {
-      "id": "778240299",
-      "label": "CONFIGURATION(24f67ac3-256c-4f81-b72b-4bf0e5c6ea67)",
-      "parent": "1712628187",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "ConfigModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": true,
-        "token": "CONFIGURATION(24f67ac3-256c-4f81-b72b-4bf0e5c6ea67)",
-        "initTime": 2.3676659999999856
       }
     },
     "781364130": {
@@ -528,7 +512,7 @@
         "transient": false,
         "exported": false,
         "token": "CacheModule",
-        "initTime": 2.220833999999968
+        "initTime": 2.324540999999954
       }
     },
     "847948870": {
@@ -544,7 +528,7 @@
         "transient": false,
         "exported": false,
         "token": "MetadataScanner",
-        "initTime": 1.94662500000004
+        "initTime": 2.0363749999999072
       }
     },
     "863216333": {
@@ -555,6 +539,21 @@
         "global": false,
         "dynamic": false,
         "internal": false
+      }
+    },
+    "866494178": {
+      "id": "866494178",
+      "label": "JobsRepository",
+      "parent": "-781526225",
+      "metadata": {
+        "type": "provider",
+        "internal": false,
+        "sourceModuleName": "JobsModule",
+        "durable": false,
+        "static": true,
+        "transient": false,
+        "exported": false,
+        "token": "JobsRepository"
       }
     },
     "879234167": {
@@ -586,7 +585,7 @@
         "transient": false,
         "exported": false,
         "token": "VALIDATED_ENV_LOADER",
-        "initTime": 3.279207999999926
+        "initTime": 3.3887919999999667
       }
     },
     "915774976": {
@@ -618,7 +617,7 @@
         "transient": false,
         "exported": true,
         "token": "Symbol(CONFIG_SERVICE)",
-        "initTime": 3.3449170000000095
+        "initTime": 3.42770900000005
       }
     },
     "951921130": {
@@ -668,8 +667,7 @@
         "static": true,
         "transient": false,
         "exported": false,
-        "token": "FilesService",
-        "initTime": 1.588041999999973
+        "token": "FilesService"
       }
     },
     "1021844289": {
@@ -731,7 +729,7 @@
         "transient": false,
         "exported": true,
         "token": "CONFIGURATION_TOKEN",
-        "initTime": 2.3370409999999993
+        "initTime": 2.433125000000018
       }
     },
     "1070370213": {
@@ -788,7 +786,7 @@
         "transient": false,
         "exported": false,
         "token": "ResolveTypeFactory",
-        "initTime": 2.4924159999999347
+        "initTime": 2.5625
       }
     },
     "1296693750": {
@@ -805,7 +803,7 @@
         "transient": false,
         "exported": false,
         "token": "NestjsFormDataModule",
-        "initTime": 1.4132499999999482
+        "initTime": 1.4467500000000655
       }
     },
     "1310883338": {
@@ -821,7 +819,22 @@
         "transient": false,
         "exported": false,
         "token": "CONFIGURATION_LOADER",
-        "initTime": 3.257833000000005
+        "initTime": 3.370042000000012
+      }
+    },
+    "1321894795": {
+      "id": "1321894795",
+      "label": "CONFIGURABLE_MODULE_OPTIONS[8220f4210b53213baaaaf]",
+      "parent": "1528017428",
+      "metadata": {
+        "type": "provider",
+        "internal": false,
+        "sourceModuleName": "DatabaseModule",
+        "durable": false,
+        "static": true,
+        "transient": false,
+        "exported": false,
+        "token": "CONFIGURABLE_MODULE_OPTIONS[8220f4210b53213baaaaf]"
       }
     },
     "1357421246": {
@@ -883,7 +896,7 @@
         "transient": false,
         "exported": true,
         "token": "Reflector",
-        "initTime": 3.8527500000000146
+        "initTime": 3.960458000000017
       }
     },
     "1441661445": {
@@ -915,7 +928,7 @@
         "transient": false,
         "exported": false,
         "token": "SettingsService",
-        "initTime": 2.6615000000000464
+        "initTime": 2.729332999999997
       }
     },
     "1479432515": {
@@ -931,7 +944,7 @@
         "transient": false,
         "exported": true,
         "token": "GraphQLSchemaHost",
-        "initTime": 1.8583340000000135
+        "initTime": 1.956124999999929
       }
     },
     "1528017428": {
@@ -999,21 +1012,6 @@
         "transient": false,
         "exported": false,
         "token": "ModuleRef"
-      }
-    },
-    "1690784845": {
-      "id": "1690784845",
-      "label": "CompaniesService",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": false,
-        "token": "CompaniesService"
       }
     },
     "1712628187": {
@@ -1087,7 +1085,7 @@
         "transient": false,
         "exported": false,
         "token": "NotificationModule",
-        "initTime": 1.4047910000000456
+        "initTime": 1.4379169999999704
       }
     },
     "1758435393": {
@@ -1135,7 +1133,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigModule",
-        "initTime": 2.638749999999959
+        "initTime": 2.7207499999999527
       }
     },
     "1787828844": {
@@ -1152,7 +1150,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigHostModule",
-        "initTime": 2.2976659999999356
+        "initTime": 2.4007500000000164
       }
     },
     "1809676814": {
@@ -1171,20 +1169,20 @@
         "token": "ModuleRef"
       }
     },
-    "1887382837": {
-      "id": "1887382837",
-      "label": "ApplicationConfig",
-      "parent": "-1637820550",
+    "1895542825": {
+      "id": "1895542825",
+      "label": "ModuleRef",
+      "parent": "-781526225",
       "metadata": {
         "type": "provider",
         "internal": true,
-        "sourceModuleName": "CompaniesModule",
+        "sourceModuleName": "JobsModule",
         "durable": false,
         "static": true,
         "scope": 0,
         "transient": false,
         "exported": false,
-        "token": "ApplicationConfig"
+        "token": "ModuleRef"
       }
     },
     "1919157847": {
@@ -1201,7 +1199,7 @@
         "transient": false,
         "exported": true,
         "token": "REQUEST",
-        "initTime": 2.42512499999998
+        "initTime": 2.4633749999998145
       }
     },
     "2022351939": {
@@ -1218,21 +1216,6 @@
         "transient": false,
         "exported": false,
         "token": "ApplicationConfig"
-      }
-    },
-    "2073346928": {
-      "id": "2073346928",
-      "label": "CompaniesController",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "controller",
-        "internal": false,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": false,
-        "token": "CompaniesController"
       }
     },
     "2118694856": {
@@ -1264,7 +1247,7 @@
         "transient": false,
         "exported": false,
         "token": "AdminController",
-        "initTime": 0.3961669999999913
+        "initTime": 0.40479099999993196
       }
     },
     "-1486320561": {
@@ -1313,7 +1296,7 @@
         "transient": true,
         "exported": true,
         "token": "INQUIRER",
-        "initTime": 2.4229589999999916
+        "initTime": 2.460458000000017
       }
     },
     "-26938366": {
@@ -1329,7 +1312,7 @@
         "transient": false,
         "exported": true,
         "token": "ModulesContainer",
-        "initTime": 2.7928340000000844
+        "initTime": 2.8541669999999613
       }
     },
     "-326832201": {
@@ -1345,7 +1328,7 @@
         "transient": false,
         "exported": true,
         "token": "HttpAdapterHost",
-        "initTime": 2.787458000000015
+        "initTime": 2.8488750000001346
       }
     },
     "-702581189": {
@@ -1361,7 +1344,7 @@
         "transient": false,
         "exported": true,
         "token": "LazyModuleLoader",
-        "initTime": 2.7859580000000506
+        "initTime": 2.847582999999986
       }
     },
     "-1904419534": {
@@ -1377,7 +1360,7 @@
         "transient": false,
         "exported": true,
         "token": "SerializedGraph",
-        "initTime": 2.7824589999999034
+        "initTime": 2.8438750000000255
       }
     },
     "-19112576": {
@@ -1404,7 +1387,7 @@
         "transient": false,
         "exported": false,
         "token": "AppModule",
-        "initTime": 2.778542000000016
+        "initTime": 2.839334000000008
       }
     },
     "-71302842": {
@@ -1452,7 +1435,7 @@
         "transient": false,
         "exported": false,
         "token": "AppService",
-        "initTime": 2.76883399999997
+        "initTime": 2.832208000000037
       }
     },
     "-107914383": {
@@ -1468,7 +1451,7 @@
         "transient": false,
         "exported": false,
         "token": "ValidationService",
-        "initTime": 2.6585000000000036
+        "initTime": 2.725167000000056
       }
     },
     "-503631789": {
@@ -1486,6 +1469,22 @@
         "token": "ConfigService"
       }
     },
+    "-1963288281": {
+      "id": "-1963288281",
+      "label": "CONFIGURATION(24407a4d-a634-48e6-a447-a59902d835e6)",
+      "parent": "1712628187",
+      "metadata": {
+        "type": "provider",
+        "internal": false,
+        "sourceModuleName": "ConfigModule",
+        "durable": false,
+        "static": true,
+        "transient": false,
+        "exported": true,
+        "token": "CONFIGURATION(24407a4d-a634-48e6-a447-a59902d835e6)",
+        "initTime": 2.4588329999999132
+      }
+    },
     "-1098322034": {
       "id": "-1098322034",
       "label": "DatabaseModule",
@@ -1500,22 +1499,7 @@
         "transient": false,
         "exported": false,
         "token": "DatabaseModule",
-        "initTime": 2.280791000000022
-      }
-    },
-    "-1980310114": {
-      "id": "-1980310114",
-      "label": "CONFIGURABLE_MODULE_OPTIONS[e21e0076a76f899bbf6d2]",
-      "parent": "1528017428",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "DatabaseModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": false,
-        "token": "CONFIGURABLE_MODULE_OPTIONS[e21e0076a76f899bbf6d2]"
+        "initTime": 2.3876670000001923
       }
     },
     "-491114354": {
@@ -1532,7 +1516,7 @@
         "transient": false,
         "exported": false,
         "token": "ConfigModule",
-        "initTime": 2.2277090000000044
+        "initTime": 2.3323749999999563
       }
     },
     "-408540750": {
@@ -1729,7 +1713,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeDefsDecoratorFactory",
-        "initTime": 1.8464999999999918
+        "initTime": 1.9437090000001263
       }
     },
     "-1783200635": {
@@ -1792,7 +1776,7 @@
         "transient": false,
         "exported": false,
         "token": "GraphQLSchemaBuilderModule",
-        "initTime": 1.7602090000000317
+        "initTime": 1.8295000000000528
       }
     },
     "-1399120880": {
@@ -1823,7 +1807,7 @@
         "transient": false,
         "exported": false,
         "token": "InputTypeFactory",
-        "initTime": 2.5460420000000568
+        "initTime": 2.622959000000037
       }
     },
     "-1046435906": {
@@ -1839,7 +1823,7 @@
         "transient": false,
         "exported": false,
         "token": "OutputTypeFactory",
-        "initTime": 2.5089159999999993
+        "initTime": 2.580667000000176
       }
     },
     "-1956905867": {
@@ -1855,7 +1839,7 @@
         "transient": false,
         "exported": false,
         "token": "OrphanedTypesFactory",
-        "initTime": 2.503959000000009
+        "initTime": 2.5750839999998334
       }
     },
     "-848002075": {
@@ -1901,7 +1885,7 @@
         "transient": false,
         "exported": false,
         "token": "AstDefinitionNodeFactory",
-        "initTime": 1.6635420000000067
+        "initTime": 1.721333000000186
       }
     },
     "-1185748874": {
@@ -1917,7 +1901,7 @@
         "transient": false,
         "exported": true,
         "token": "FileSystemHelper",
-        "initTime": 1.8601249999999254
+        "initTime": 1.958208999999897
       }
     },
     "-973488942": {
@@ -1933,7 +1917,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeDefinitionsStorage",
-        "initTime": 1.6467499999999973
+        "initTime": 1.7026250000001255
       }
     },
     "-1717366145": {
@@ -1949,7 +1933,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeMapperSevice",
-        "initTime": 1.6456249999999955
+        "initTime": 1.7014999999998963
       }
     },
     "-1455444777": {
@@ -1965,7 +1949,7 @@
         "transient": false,
         "exported": false,
         "token": "TypeFieldsAccessor",
-        "initTime": 1.6444999999999936
+        "initTime": 1.7004170000000158
       }
     },
     "-713980898": {
@@ -1981,7 +1965,7 @@
         "transient": false,
         "exported": false,
         "token": "OrphanedReferenceRegistry",
-        "initTime": 1.643416000000002
+        "initTime": 1.6993330000000242
       }
     },
     "-2003726489": {
@@ -2008,7 +1992,7 @@
         "transient": false,
         "exported": false,
         "token": "UsersModule",
-        "initTime": 1.640875000000051
+        "initTime": 1.696957999999995
       }
     },
     "-618964563": {
@@ -2056,7 +2040,7 @@
         "transient": false,
         "exported": false,
         "token": "ValidationService",
-        "initTime": 1.6384590000000117
+        "initTime": 1.694582999999966
       }
     },
     "-50849882": {
@@ -2103,7 +2087,7 @@
         "transient": false,
         "exported": false,
         "token": "UploadsModule",
-        "initTime": 1.5998329999999896
+        "initTime": 1.653707999999824
       }
     },
     "-1664728020": {
@@ -2134,8 +2118,7 @@
         "static": true,
         "transient": false,
         "exported": false,
-        "token": "FilesRepository",
-        "initTime": 1.5968750000000682
+        "token": "FilesRepository"
       }
     },
     "-524809794": {
@@ -2183,9 +2166,9 @@
         "token": "UploadsService"
       }
     },
-    "-622964635": {
-      "id": "-622964635",
-      "label": "21e0076a76f899bbf6d2d",
+    "-684771484": {
+      "id": "-684771484",
+      "label": "220f4210b53213baaaafe",
       "parent": "1562885041",
       "metadata": {
         "type": "injectable",
@@ -2195,7 +2178,7 @@
         "static": true,
         "transient": false,
         "exported": false,
-        "token": "21e0076a76f899bbf6d2d",
+        "token": "220f4210b53213baaaafe",
         "subtype": "interceptor"
       }
     },
@@ -2214,7 +2197,7 @@
         "token": "UploadsController",
         "enhancers": [
           {
-            "id": "-622964635",
+            "id": "-684771484",
             "methodKey": "uploadFile",
             "subtype": "interceptor"
           },
@@ -2240,7 +2223,7 @@
         "transient": false,
         "exported": false,
         "token": "EmailModule",
-        "initTime": 1.570875000000001
+        "initTime": 1.617958999999928
       }
     },
     "-257132593": {
@@ -2282,7 +2265,7 @@
         "transient": false,
         "exported": false,
         "token": "AuthModule",
-        "initTime": 1.5570830000000342
+        "initTime": 1.602916999999934
       }
     },
     "-120792986": {
@@ -2381,7 +2364,7 @@
         "transient": false,
         "exported": false,
         "token": "RolesPermissionsModule",
-        "initTime": 1.5066659999999956
+        "initTime": 1.5476249999999254
       }
     },
     "-1252958694": {
@@ -2483,7 +2466,7 @@
         "transient": false,
         "exported": true,
         "token": "FormDataInterceptor",
-        "initTime": 1.6941659999999956
+        "initTime": 1.728249999999889
       }
     },
     "-1914887682": {
@@ -2531,65 +2514,7 @@
         "transient": false,
         "exported": false,
         "token": "NotificationService",
-        "initTime": 1.4025419999999258
-      }
-    },
-    "-1637820550": {
-      "id": "-1637820550",
-      "label": "CompaniesModule",
-      "metadata": {
-        "type": "module",
-        "global": false,
-        "dynamic": false,
-        "internal": false
-      }
-    },
-    "-1969123040": {
-      "id": "-1969123040",
-      "label": "CompaniesModule",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "provider",
-        "internal": true,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "scope": 0,
-        "transient": false,
-        "exported": false,
-        "token": "CompaniesModule",
-        "initTime": 1.4005839999999807
-      }
-    },
-    "-1496314176": {
-      "id": "-1496314176",
-      "label": "ModuleRef",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "provider",
-        "internal": true,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "scope": 0,
-        "transient": false,
-        "exported": false,
-        "token": "ModuleRef"
-      }
-    },
-    "-208389630": {
-      "id": "-208389630",
-      "label": "CompaniesRepository",
-      "parent": "-1637820550",
-      "metadata": {
-        "type": "provider",
-        "internal": false,
-        "sourceModuleName": "CompaniesModule",
-        "durable": false,
-        "static": true,
-        "transient": false,
-        "exported": false,
-        "token": "CompaniesRepository"
+        "initTime": 1.4356669999999667
       }
     },
     "-1994411154": {
@@ -2616,7 +2541,7 @@
         "transient": false,
         "exported": false,
         "token": "AdminModule",
-        "initTime": 1.3856660000000147
+        "initTime": 1.4338749999999436
       }
     },
     "-609649228": {
@@ -2664,7 +2589,64 @@
         "transient": false,
         "exported": false,
         "token": "AdminService",
-        "initTime": 1.3835409999999229
+        "initTime": 1.43162499999994
+      }
+    },
+    "-781526225": {
+      "id": "-781526225",
+      "label": "JobsModule",
+      "metadata": {
+        "type": "module",
+        "global": false,
+        "dynamic": false,
+        "internal": false
+      }
+    },
+    "-1631933820": {
+      "id": "-1631933820",
+      "label": "JobsModule",
+      "parent": "-781526225",
+      "metadata": {
+        "type": "provider",
+        "internal": true,
+        "sourceModuleName": "JobsModule",
+        "durable": false,
+        "static": true,
+        "scope": 0,
+        "transient": false,
+        "exported": false,
+        "token": "JobsModule",
+        "initTime": 1.429834000000028
+      }
+    },
+    "-443087583": {
+      "id": "-443087583",
+      "label": "JobsService",
+      "parent": "-781526225",
+      "metadata": {
+        "type": "provider",
+        "internal": false,
+        "sourceModuleName": "JobsModule",
+        "durable": false,
+        "static": true,
+        "transient": false,
+        "exported": false,
+        "token": "JobsService"
+      }
+    },
+    "-1663799116": {
+      "id": "-1663799116",
+      "label": "JobsController",
+      "parent": "-781526225",
+      "metadata": {
+        "type": "controller",
+        "internal": false,
+        "sourceModuleName": "JobsModule",
+        "durable": false,
+        "static": true,
+        "transient": false,
+        "exported": false,
+        "token": "JobsController"
       }
     }
   },
@@ -2688,6 +2670,22 @@
         "targetModuleName": "JwtModule"
       },
       "id": "66750762"
+    },
+    "135003511": {
+      "source": "1310883338",
+      "target": "-1963288281",
+      "metadata": {
+        "type": "class-to-class",
+        "sourceModuleName": "ConfigModule",
+        "sourceClassName": "CONFIGURATION_LOADER",
+        "targetClassName": "CONFIGURATION(24407a4d-a634-48e6-a447-a59902d835e6)",
+        "sourceClassToken": "CONFIGURATION_LOADER",
+        "targetClassToken": "CONFIGURATION(24407a4d-a634-48e6-a447-a59902d835e6)",
+        "targetModuleName": "ConfigModule",
+        "keyOrIndex": 1,
+        "injectionType": "constructor"
+      },
+      "id": "135003511"
     },
     "136026217": {
       "source": "1161432620",
@@ -2805,6 +2803,16 @@
         "targetModuleName": "InternalCoreModule"
       },
       "id": "477110936"
+    },
+    "558148626": {
+      "source": "-781526225",
+      "target": "1528017428",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "DatabaseModule"
+      },
+      "id": "558148626"
     },
     "577889711": {
       "source": "1562885041",
@@ -3098,6 +3106,16 @@
       },
       "id": "1178621493"
     },
+    "1344365609": {
+      "source": "-781526225",
+      "target": "211572259",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "ConfigHostModule"
+      },
+      "id": "1344365609"
+    },
     "1344405521": {
       "source": "-19112576",
       "target": "954997704",
@@ -3107,16 +3125,6 @@
         "targetModuleName": "GraphQLModule"
       },
       "id": "1344405521"
-    },
-    "1440343435": {
-      "source": "-1637820550",
-      "target": "-536515674",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "JwtModule"
-      },
-      "id": "1440343435"
     },
     "1545091551": {
       "source": "-1066753070",
@@ -3144,16 +3152,6 @@
       },
       "id": "1599239662"
     },
-    "1609552555": {
-      "source": "-19112576",
-      "target": "-1637820550",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "AppModule",
-        "targetModuleName": "CompaniesModule"
-      },
-      "id": "1609552555"
-    },
     "1634078008": {
       "source": "1528017428",
       "target": "1161432620",
@@ -3163,16 +3161,6 @@
         "targetModuleName": "BullModule"
       },
       "id": "1634078008"
-    },
-    "1661301228": {
-      "source": "-1637820550",
-      "target": "-949539487",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "CacheModule"
-      },
-      "id": "1661301228"
     },
     "1673114911": {
       "source": "-2140524512",
@@ -3306,37 +3294,6 @@
       },
       "id": "1993093641"
     },
-    "1999557416": {
-      "source": "1310883338",
-      "target": "778240299",
-      "metadata": {
-        "type": "class-to-class",
-        "sourceModuleName": "ConfigModule",
-        "sourceClassName": "CONFIGURATION_LOADER",
-        "targetClassName": "CONFIGURATION(24f67ac3-256c-4f81-b72b-4bf0e5c6ea67)",
-        "sourceClassToken": "CONFIGURATION_LOADER",
-        "targetClassToken": "CONFIGURATION(24f67ac3-256c-4f81-b72b-4bf0e5c6ea67)",
-        "targetModuleName": "ConfigModule",
-        "keyOrIndex": 1,
-        "injectionType": "constructor"
-      },
-      "id": "1999557416"
-    },
-    "1999967422": {
-      "source": "-859568496",
-      "target": "-622964635",
-      "metadata": {
-        "type": "class-to-class",
-        "sourceModuleName": "UploadsModule",
-        "sourceClassName": "UploadsController",
-        "targetClassName": "21e0076a76f899bbf6d2d",
-        "sourceClassToken": "UploadsController",
-        "targetClassToken": "21e0076a76f899bbf6d2d",
-        "targetModuleName": "UploadsModule",
-        "injectionType": "decorator"
-      },
-      "id": "1999967422"
-    },
     "2027436598": {
       "source": "-140228824",
       "target": "1528017428",
@@ -3346,6 +3303,16 @@
         "targetModuleName": "DatabaseModule"
       },
       "id": "2027436598"
+    },
+    "2050096728": {
+      "source": "-781526225",
+      "target": "555176277",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "InternalCoreModule"
+      },
+      "id": "2050096728"
     },
     "2100140299": {
       "source": "-19112576",
@@ -3436,6 +3403,16 @@
         "targetModuleName": "AdminModule"
       },
       "id": "-1967693989"
+    },
+    "-559156673": {
+      "source": "-19112576",
+      "target": "-781526225",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "AppModule",
+        "targetModuleName": "JobsModule"
+      },
+      "id": "-559156673"
     },
     "-815553404": {
       "source": "-19112576",
@@ -4037,46 +4014,6 @@
       },
       "id": "-1224166082"
     },
-    "-647832834": {
-      "source": "-1637820550",
-      "target": "555176277",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "InternalCoreModule"
-      },
-      "id": "-647832834"
-    },
-    "-545308559": {
-      "source": "-1637820550",
-      "target": "211572259",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "ConfigHostModule"
-      },
-      "id": "-545308559"
-    },
-    "-1802351160": {
-      "source": "-1637820550",
-      "target": "1528017428",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "DatabaseModule"
-      },
-      "id": "-1802351160"
-    },
-    "-598689026": {
-      "source": "-1637820550",
-      "target": "1161432620",
-      "metadata": {
-        "type": "module-to-module",
-        "sourceModuleName": "CompaniesModule",
-        "targetModuleName": "BullModule"
-      },
-      "id": "-598689026"
-    },
     "-873320658": {
       "source": "-1994411154",
       "target": "555176277",
@@ -4106,6 +4043,51 @@
         "targetModuleName": "DatabaseModule"
       },
       "id": "-291598928"
+    },
+    "-1331924040": {
+      "source": "-781526225",
+      "target": "-949539487",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "CacheModule"
+      },
+      "id": "-1331924040"
+    },
+    "-1345917204": {
+      "source": "-781526225",
+      "target": "1161432620",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "BullModule"
+      },
+      "id": "-1345917204"
+    },
+    "-1238538929": {
+      "source": "-781526225",
+      "target": "-536515674",
+      "metadata": {
+        "type": "module-to-module",
+        "sourceModuleName": "JobsModule",
+        "targetModuleName": "JwtModule"
+      },
+      "id": "-1238538929"
+    },
+    "-1779972507": {
+      "source": "-859568496",
+      "target": "-684771484",
+      "metadata": {
+        "type": "class-to-class",
+        "sourceModuleName": "UploadsModule",
+        "sourceClassName": "UploadsController",
+        "targetClassName": "220f4210b53213baaaafe",
+        "sourceClassToken": "UploadsController",
+        "targetClassToken": "220f4210b53213baaaafe",
+        "targetModuleName": "UploadsModule",
+        "injectionType": "decorator"
+      },
+      "id": "-1779972507"
     },
     "-951393523": {
       "source": "930519593",
@@ -4214,15 +4196,15 @@
     "cause": {
       "type": "unknown-dependencies",
       "context": {
-        "index": 0,
+        "index": 1,
         "dependencies": [
-          "Object",
-          "FileValidationService"
+          "JobsRepository",
+          "ValidationService"
         ],
-        "name": "Object"
+        "name": "ValidationService"
       },
-      "moduleId": "1562885041",
-      "nodeId": "-495249285"
+      "moduleId": "-781526225",
+      "nodeId": "-443087583"
     }
   }
 }
