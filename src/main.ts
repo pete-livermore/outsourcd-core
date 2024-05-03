@@ -9,19 +9,12 @@ import * as fs from 'fs';
 import { AppModule } from './app.module';
 import { SnakeCaseToCamelCasePipe } from './common/pipes/snake-to-camel.pipe';
 import { ConfigService } from '@nestjs/config';
-import { MicroserviceOptions, Transport } from '@nestjs/microservices';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
     abortOnError: false,
   });
-
-  app.connectMicroservice<MicroserviceOptions>({
-    transport: Transport.TCP,
-  });
-
-  await app.startAllMicroservices();
 
   const configService = app.get(ConfigService);
   app.setGlobalPrefix('api', {
