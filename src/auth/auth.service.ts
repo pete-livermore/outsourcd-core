@@ -38,6 +38,6 @@ export class AuthService {
   }
 
   getAuthenticatedUser(userId: number) {
-    return this.usersService.findById(userId);
+    return this.usersService.findById(userId, { role: true });
   }
 }
