@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -12,7 +13,6 @@ import { JobsService } from './jobs.service';
 import { Page, PageMetaDto } from 'src/common/dto/page.dto';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
-import { FindOneParams } from 'src/common/dto/req-params';
 import { FilterParams } from 'src/common/dto/filter-params';
 import { PopulateParams } from 'src/common/dto/populate-params';
 import { PaginationParams } from 'src/common/dto/pagination-params';
@@ -40,7 +40,7 @@ export class JobsController {
   }
 
   @Get(':id')
-  async findById(@Param() { id }: FindOneParams) {
+  async findById(@Param('id', ParseIntPipe) id: number) {
     const user = await this.jobsService.findById(id);
 
     return { data: user };

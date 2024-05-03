@@ -77,9 +77,7 @@ describe('UsersController', () => {
 
       jest.spyOn(usersService, 'findById').mockResolvedValue(returnedUser);
 
-      const result = await usersController.findById({
-        id: 42,
-      });
+      const result = await usersController.findById(42);
 
       expect(result).toEqual({
         data: returnedUser,
@@ -95,6 +93,7 @@ describe('UsersController', () => {
         firstName: 'Miranda',
         lastName: 'Anas',
         role: 3,
+        isConfirmed: false,
       };
 
       const createdUser = new User({

@@ -3,7 +3,11 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { FindUsersParamsDto } from './dto/find-users-params.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { Database, Tables } from '../database/database';
-import { ConflictException, Injectable } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+} from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder } from 'kysely';
 import { Users } from 'src/kysely-types';
@@ -41,6 +45,7 @@ export class UsersRepository {
           first_name: data.firstName,
           last_name: data.lastName,
           role_id: data.role,
+          is_confirmed: data.isConfirmed,
         })
         .returning([
           'id',
@@ -55,8 +60,16 @@ export class UsersRepository {
 
       return new User(dbResponse);
     } catch (e) {
-      if (isDatabaseError(e) && e.code === PostgresErrorCode.UniqueViolation) {
-        throw new ConflictException('User with this email already exists');
+      if (isDatabaseError(e)) {
+        if (e.code === PostgresErrorCode.UniqueViolation) {
+          throw new ConflictException('User with this email already exists');
+        }
+
+        if (e.code === PostgresErrorCode.ForeignKeyViolation) {
+          throw new BadRequestException(
+            'One or more of the relations does not exist',
+          );
+        }
       }
       throw e;
     }

@@ -45,6 +45,15 @@ describe('JobsService', () => {
       const jobToCreate = {
         title: 'Job title',
         description: 'This is a job description',
+        salary: {
+          value: {
+            min: 20000,
+            max: 25000,
+          },
+          currency: 'GBP',
+          period: 'yr',
+        },
+        location_type: 'on-site',
       };
       const VALIDATION_ERROR = 'validation gone wrong';
       jest
@@ -58,6 +67,15 @@ describe('JobsService', () => {
       const jobToCreate = {
         title: 'Job title',
         description: 'This is a job description',
+        salary: {
+          value: {
+            min: 20000,
+            max: 25000,
+          },
+          currency: 'GBP',
+          period: 'yr',
+        },
+        location_type: 'remote',
       };
 
       jest.spyOn(validationService, 'validateDto').mockResolvedValue(undefined);

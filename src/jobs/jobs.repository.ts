@@ -1,11 +1,11 @@
-import { Job } from './Job.model';
+import { Job, SalaryRelation } from './Job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
 import { Database, Tables } from '../database/database';
 import { Injectable } from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
-import { ExpressionBuilder } from 'kysely';
+import { ExpressionBuilder, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
 import { PopulateJobDto } from './dto/populate-Job.dto';
 
@@ -26,7 +26,17 @@ export class JobsRepository {
         .selectFrom('companies as c')
         .select(['c.id', 'c.name'])
         .whereRef('j.company_id', '=', 'c.id'),
-    ).as('role');
+    ).as('company');
+  }
+
+  private selectSalary() {
+    return sql<SalaryRelation>`json_build_object(
+      'currency', salary_currency, 
+      'value',  json_build_object(
+          'min', salary_min_value, 
+          'max', salary_max_value
+        ), 
+      'period', salary_period)`.as('salary');
   }
 
   async create(data: CreateJobDto): Promise<Job> {
@@ -35,8 +45,19 @@ export class JobsRepository {
       .values({
         title: data.title,
         description: data.description,
+        salary_currency: data.salary.currency,
+        salary_period: data.salary.period,
+        salary_min_value: data.salary.value.min,
+        salary_max_value: data.salary.value.max,
       })
-      .returning(['id', 'title', 'description', 'created_at', 'updated_at'])
+      .returning([
+        'id',
+        'title',
+        'description',
+        'location_type',
+        'created_at',
+        'updated_at',
+      ])
       .executeTakeFirstOrThrow();
 
     return new Job(dbResponse);
@@ -53,6 +74,8 @@ export class JobsRepository {
         'j.id',
         'j.title',
         'j.description',
+        this.selectSalary(),
+        'j.location_type',
         'j.created_at',
         'j.updated_at',
       ])
@@ -73,9 +96,12 @@ export class JobsRepository {
           'j.id',
           'j.title',
           'j.description',
+          'j.location_type',
           'j.created_at',
           'j.updated_at',
+          this.selectSalary(),
         ])
+
         .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
         .orderBy('id')
         .offset(pagination.offset)
@@ -84,11 +110,6 @@ export class JobsRepository {
       if (pagination.limit !== null) {
         jobsQuery = jobsQuery.limit(pagination.limit);
       }
-      // .$if(populate.image, (eb) =>
-      //   eb
-      //     .leftJoin('upload as up', 'up.id', 'us.image_id')
-      //     .select(['up.id', 'up.url']),
-      // );
 
       if (filters) {
         const { employmentType } = filters;
@@ -131,6 +152,7 @@ export class JobsRepository {
         'j.id',
         'j.title',
         'j.description',
+        'j.location_type',
         'j.created_at',
         'j.updated_at',
       ])

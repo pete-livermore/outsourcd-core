@@ -74,6 +74,7 @@ describe('UsersService', () => {
         firstName: 'Test',
         lastName: 'User',
         role: 3,
+        isConfirmed: false,
       };
       it("should call the repository create function and return the result when validation passes and there isn't an existing user with that email", async () => {
         jest.mocked(plainToInstance).mockReturnValue(createUserDto);

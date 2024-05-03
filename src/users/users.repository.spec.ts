@@ -18,6 +18,7 @@ describe('The UsersRepository class', () => {
       email: 'john@smith.com',
       password: 'strongPassword123',
       role: 1,
+      isConfirmed: false,
     };
     executeTakeFirstOrThrowMock = jest.fn();
     const module = await Test.createTestingModule({

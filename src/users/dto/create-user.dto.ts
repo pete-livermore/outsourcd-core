@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsEmail, IsInt, IsNotEmpty, IsString, Min } from 'class-validator';
+import {
+  IsBoolean,
+  IsEmail,
+  IsInt,
+  IsNotEmpty,
+  IsString,
+  Min,
+} from 'class-validator';
 
 export class CreateUserDto {
   @ApiProperty()
@@ -27,4 +34,9 @@ export class CreateUserDto {
   @IsInt()
   @Min(1)
   role: number;
+
+  @ApiProperty()
+  @IsNotEmpty()
+  @IsBoolean()
+  isConfirmed: boolean;
 }

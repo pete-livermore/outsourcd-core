@@ -1,10 +1,10 @@
 import { Expose, Type } from 'class-transformer';
 import { IsObject, IsOptional, ValidateNested } from 'class-validator';
-import { PaginationParams } from 'src/common/dto/pagination-params';
 import { PopulateJobDto } from './populate-Job.dto';
 import { JobFiltersDto } from './job-filters.dto';
+import { FindEntityParams } from 'src/common/dto/find-entity-params.dto';
 
-export class FindJobsParamsDto {
+export class FindJobsParamsDto extends FindEntityParams {
   @Expose()
   @IsOptional()
   @IsObject()
@@ -18,11 +18,4 @@ export class FindJobsParamsDto {
   @ValidateNested()
   @Type(() => JobFiltersDto)
   filters?: JobFiltersDto;
-
-  @Expose()
-  @IsOptional()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => PaginationParams)
-  pagination?: PaginationParams;
 }

@@ -1,10 +1,10 @@
 import { Expose, Type } from 'class-transformer';
 import { IsObject, IsOptional, ValidateNested } from 'class-validator';
-import { PaginationParams } from 'src/common/dto/pagination-params';
 import { PopulateUserDto } from './populate-user.dto';
 import { UserFiltersDto } from './user-filters.dto';
+import { FindEntityParams } from 'src/common/dto/find-entity-params.dto';
 
-export class FindUsersParamsDto {
+export class FindUsersParamsDto extends FindEntityParams {
   @Expose()
   @IsOptional()
   @IsObject()
@@ -18,11 +18,4 @@ export class FindUsersParamsDto {
   @ValidateNested()
   @Type(() => UserFiltersDto)
   filters?: UserFiltersDto;
-
-  @Expose()
-  @IsOptional()
-  @IsObject()
-  @ValidateNested()
-  @Type(() => PaginationParams)
-  pagination?: PaginationParams;
 }

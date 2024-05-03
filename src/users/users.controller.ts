@@ -4,6 +4,7 @@ import {
   Get,
   HttpCode,
   Param,
+  ParseIntPipe,
   Post,
   Put,
   Query,
@@ -11,7 +12,6 @@ import {
 import { RequirePermissions } from 'src/roles-permissions/permissions.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { FindOneParams } from 'src/common/dto/req-params';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PopulateParams } from 'src/common/dto/populate-params';
 import { FilterParams } from 'src/common/dto/filter-params';
@@ -23,7 +23,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @RequirePermissions(3)
+  @RequirePermissions(2)
   async getAll(
     @Query() { filters }: FilterParams = {},
     @Query() { populate }: PopulateParams = {},
@@ -42,7 +42,7 @@ export class UsersController {
   }
 
   @Get(':id')
-  async findById(@Param() { id }: FindOneParams) {
+  async findById(@Param('id', ParseIntPipe) id: number) {
     const user = await this.usersService.findById(id);
 
     return { data: user };
