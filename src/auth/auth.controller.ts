@@ -24,8 +24,9 @@ export class AuthController {
   }
 
   @Get('me')
-  getAuthenticateUser(@Req() request: Request) {
+  async getAuthenticateUser(@Req() request: Request) {
     const { id } = request.user;
-    return this.authService.getAuthenticatedUser(id);
+    const data = await this.authService.getAuthenticatedUser(id);
+    return { data };
   }
 }
