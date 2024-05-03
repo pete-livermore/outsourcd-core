@@ -23,6 +23,7 @@ import { UsersModule } from './users/users.module';
 import { ValidationService } from './validation/validation.service';
 import { BullModule } from '@nestjs/bull';
 import { JobsModule } from './jobs/jobs.module';
+import { CompaniesModule } from './companies/companies.module';
 
 @Module({
   imports: [
@@ -92,6 +93,7 @@ import { JobsModule } from './jobs/jobs.module';
     NotificationModule,
     AdminModule,
     JobsModule,
+    CompaniesModule,
   ],
   controllers: [AppController],
   providers: [AppService, SettingsService, ValidationService],

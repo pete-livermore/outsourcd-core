@@ -11,6 +11,7 @@ import {
   UsersSkills as UsersSkillsTable,
   RolesPermissions as RolesPermissionsTable,
   Companies as CompaniesTable,
+  Sectors as SectorsTable,
 } from 'src/kysely-types';
 
 export interface Tables {
@@ -21,6 +22,7 @@ export interface Tables {
   roles_permissions: RolesPermissionsTable;
   jobs: JobsTable;
   skills: SkillsTable;
+  sectors: SectorsTable;
   jobs_skills: JobsSkillsTable;
   users_skills: UsersSkillsTable;
   users_jobs: UsersJobsTable;

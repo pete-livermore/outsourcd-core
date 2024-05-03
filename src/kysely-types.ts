@@ -26,6 +26,7 @@ export interface Companies {
   created_at: Generated<Timestamp>;
   description: string;
   id: Generated<number>;
+  logo_image: number | null;
   name: string;
   sector_id: number | null;
   updated_at: Generated<Timestamp>;
@@ -73,9 +74,11 @@ export interface Jobs {
   description: string;
   end_date: Timestamp;
   id: Generated<number>;
+  location_type: string;
   salary_currency: string;
+  salary_max_value: Numeric;
+  salary_min_value: Numeric;
   salary_period: string;
-  salary_value: Numeric;
   start_date: Timestamp;
   title: string;
   updated_at: Generated<Timestamp>;
