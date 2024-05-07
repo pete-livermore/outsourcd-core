@@ -1,6 +1,6 @@
 import { Expose, Type } from 'class-transformer';
 import { IsObject, IsOptional, ValidateNested } from 'class-validator';
-import { PopulateJobDto } from './populate-Job.dto';
+import { PopulateJobDto } from './populate-job.dto';
 import { JobFiltersDto } from './job-filters.dto';
 import { FindEntityParams } from 'src/common/dto/find-entity-params.dto';
 

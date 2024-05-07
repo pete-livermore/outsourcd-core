@@ -1,4 +1,4 @@
-import { Job, SalaryRelation } from './Job.model';
+import { Job, SalaryRelation } from './job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
