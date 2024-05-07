@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
-import { PopulateJobDto } from './dto/populate-Job.dto';
+import { PopulateJobDto } from './dto/populate-job.dto';
 
 type JobTableExpression = ExpressionBuilder<
   Tables & {
