@@ -61,7 +61,7 @@ export async function up(database: Kysely<unknown>): Promise<void> {
     )
     .addColumn('weekly_hours', 'integer', (col) => col.notNull())
     .addColumn('start_date', 'timestamp', (cb) => cb.notNull())
-    .addColumn('end_date', 'timestamp', (cb) => cb.notNull())
+    .addColumn('end_date', 'timestamp')
     .addColumn('created_at', 'timestamp', (cb) =>
       cb.notNull().defaultTo(sql`now()`),
     )
