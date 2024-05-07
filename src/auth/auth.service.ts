@@ -36,8 +36,4 @@ export class AuthService {
 
     return { token };
   }
-
-  getAuthenticatedUser(userId: number) {
-    return this.usersService.findById(userId, { role: true });
-  }
 }
