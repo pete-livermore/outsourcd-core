@@ -53,7 +53,16 @@ describe('JobsService', () => {
           currency: 'GBP',
           period: 'yr',
         },
-        location_type: 'on-site',
+        startDate: new Date().toISOString(),
+        endDate: new Date().toISOString(),
+        location: {
+          type: 'remote',
+          city: 'London',
+          country: 'UK',
+          coordinates: [500, 200],
+        },
+        weeklyHours: 50,
+        company: 55,
       };
       const VALIDATION_ERROR = 'validation gone wrong';
       jest
@@ -75,7 +84,15 @@ describe('JobsService', () => {
           currency: 'GBP',
           period: 'yr',
         },
-        location_type: 'remote',
+        startDate: new Date().toISOString(),
+        location: {
+          type: 'remote',
+          city: 'London',
+          country: 'UK',
+          coordinates: [500, 200],
+        },
+        weeklyHours: 50,
+        company: 55,
       };
 
       jest.spyOn(validationService, 'validateDto').mockResolvedValue(undefined);

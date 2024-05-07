@@ -40,21 +40,32 @@ export class JobsRepository {
   }
 
   async create(data: CreateJobDto): Promise<Job> {
+    const { location, salary } = data;
+    const [x, y] = location.coordinates;
     const dbResponse = await this.db
       .insertInto('jobs')
       .values({
         title: data.title,
         description: data.description,
         salary_currency: data.salary.currency,
-        salary_period: data.salary.period,
-        salary_min_value: data.salary.value.min,
-        salary_max_value: data.salary.value.max,
+        salary_period: salary.period,
+        salary_min_value: salary.value.min,
+        salary_max_value: salary.value.max,
+        city: location.city,
+        country: location.country,
+        location_type: location.type,
+        coordinates: sql`ST_MakePoint(${x}, ${y})`,
+        weekly_hours: data.weeklyHours,
+        start_date: data.startDate,
       })
       .returning([
         'id',
         'title',
         'description',
         'location_type',
+        'city',
+        'country',
+        'weekly_hours',
         'created_at',
         'updated_at',
       ])
@@ -112,12 +123,16 @@ export class JobsRepository {
       }
 
       if (filters) {
-        const { employmentType } = filters;
+        const { employmentType, location } = filters;
 
         if (employmentType) {
           if (employmentType === 'permanent') {
             jobsQuery = jobsQuery.where('j.end_date', 'is', null);
           }
+        }
+
+        if (location.type) {
+          jobsQuery = jobsQuery.where('j.location_type', '=', location.type);
         }
       }
 
