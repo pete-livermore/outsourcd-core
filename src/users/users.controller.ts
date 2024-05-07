@@ -8,6 +8,7 @@ import {
   Post,
   Put,
   Query,
+  Req,
 } from '@nestjs/common';
 import { RequirePermissions } from 'src/roles-permissions/permissions.decorator';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -17,6 +18,7 @@ import { PopulateParams } from 'src/common/dto/populate-params';
 import { FilterParams } from 'src/common/dto/filter-params';
 import { PaginationParams } from 'src/common/dto/pagination-params';
 import { Page, PageMetaDto } from 'src/common/dto/page.dto';
+import { Request } from 'src/common/interfaces/request';
 
 @Controller('users')
 export class UsersController {
@@ -39,6 +41,13 @@ export class UsersController {
       users,
       new PageMetaDto({ pageOptionsDto: { limit, offset }, itemCount: count }),
     );
+  }
+
+  @Get('me')
+  async findAuthenticatedUser(@Req() request: Request) {
+    const { id } = request.user;
+    const data = await this.usersService.findById(id, { role: true });
+    return { data };
   }
 
   @Get(':id')

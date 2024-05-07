@@ -1,4 +1,4 @@
-import { Job, SalaryRelation } from './Job.model';
+import { Job, SalaryRelation } from './job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -7,7 +7,7 @@ import { Injectable } from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
-import { PopulateJobDto } from './dto/populate-Job.dto';
+import { PopulateJobDto } from './dto/populate-job.dto';
 
 type JobTableExpression = ExpressionBuilder<
   Tables & {
