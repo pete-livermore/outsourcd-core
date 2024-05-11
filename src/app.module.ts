@@ -15,8 +15,6 @@ import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
 import { DatabaseModule } from './database/database.module';
-import { EmailModule } from './email/email.module';
-import { NotificationModule } from './notification/notification.module';
 import { RolesPermissionsModule } from './roles-permissions/roles-permissions.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { UsersModule } from './users/users.module';
@@ -24,6 +22,7 @@ import { ValidationService } from './validation/validation.service';
 import { BullModule } from '@nestjs/bull';
 import { JobsModule } from './jobs/jobs.module';
 import { CompaniesModule } from './companies/companies.module';
+import { NotificationsModule } from './notifications/notifications.module';
 
 @Module({
   imports: [
@@ -86,14 +85,13 @@ import { CompaniesModule } from './companies/companies.module';
     }),
     UsersModule,
     UploadsModule,
-    EmailModule,
     AuthModule,
     RolesPermissionsModule,
     NestjsFormDataModule,
-    NotificationModule,
     AdminModule,
     JobsModule,
     CompaniesModule,
+    NotificationsModule,
   ],
   controllers: [AppController],
   providers: [AppService, SettingsService, ValidationService],
