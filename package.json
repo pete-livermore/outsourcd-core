@@ -11,7 +11,7 @@
     "db:migrate": "ts-node ./src/run-migrations.ts",
     "db:pull": "kysely-codegen --out-file ./src/kysely-types.ts --exclude-pattern spatial_ref_sys",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
-    "infrastructure:up": "docker compose up -d && docker run -p 6379:6379 -it redis/redis-stack-server:latest",
+    "infrastructure:up": "docker compose -p outsourcd up -d",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
