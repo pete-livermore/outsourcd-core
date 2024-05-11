@@ -5,9 +5,10 @@ import { UsersService } from './users.service';
 import { ConfigModule } from '@nestjs/config';
 import { ValidationService } from 'src/validation/validation.service';
 import { UsersRepository } from './users.repository';
+import { notificationsMicroserviceProvider } from 'src/notifications/microservice.provider';
 
 @Module({
-  imports: [ConfigModule],
+  imports: [notificationsMicroserviceProvider(), ConfigModule],
   providers: [ValidationService, UsersRepository, UsersService, UsersResolver],
   controllers: [UsersController],
   exports: [UsersService],

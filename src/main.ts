@@ -9,12 +9,17 @@ import * as fs from 'fs';
 import { AppModule } from './app.module';
 import { SnakeCaseToCamelCasePipe } from './common/pipes/snake-to-camel.pipe';
 import { ConfigService } from '@nestjs/config';
+import { MicroserviceOptions } from '@nestjs/microservices';
+import { notificationsConfig } from './notifications/microservice.provider';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     snapshot: true,
     abortOnError: false,
   });
+
+  // connect notifications microservice
+  app.connectMicroservice<MicroserviceOptions>(notificationsConfig);
 
   const configService = app.get(ConfigService);
   app.setGlobalPrefix('api', {
@@ -43,6 +48,7 @@ async function bootstrap() {
 
   const document = SwaggerModule.createDocument(app, config);
   SwaggerModule.setup('api', app, document);
+  await app.startAllMicroservices();
   await app.listen(configService.get('APP_PORT'));
 }
 bootstrap().catch(() => {

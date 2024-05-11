@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
 import { DeleteResult } from 'kysely';
 import { UnsanitizedUser, User } from './user.model';
 import { UsersRepository } from './users.repository';
@@ -9,10 +9,14 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { FindUsersParamsDto } from './dto/find-users-params.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { PopulateUserDto } from './dto/populate-user.dto';
+import { NOTIFICATIONS_SERVICE_TOKEN } from 'src/notifications/microservice.provider';
+import { ClientProxy } from '@nestjs/microservices';
 
 @Injectable()
 export class UsersService {
   constructor(
+    @Inject(NOTIFICATIONS_SERVICE_TOKEN)
+    private notificationsMicroservice: ClientProxy,
     private readonly configService: ConfigService,
     private readonly validationService: ValidationService,
     private readonly usersRepository: UsersRepository,
@@ -26,7 +30,17 @@ export class UsersService {
       this.configService.get('PASSWORD_SALT_ROUNDS'),
     );
 
-    return this.usersRepository.create({ ...user, password: hashedPassword });
+    const createdUser = await this.usersRepository.create({
+      ...user,
+      password: hashedPassword,
+    });
+
+    this.notificationsMicroservice.emit(
+      'user_created',
+      JSON.stringify({ data: createdUser }),
+    );
+
+    return createdUser;
   }
 
   async getAll(params?: FindUsersParamsDto) {

@@ -10,6 +10,8 @@ import { ValidationService } from 'src/validation/validation.service';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserFiltersDto } from './dto/user-filters.dto';
 import { PopulateUserDto } from './dto/populate-user.dto';
+import { NOTIFICATIONS_SERVICE_TOKEN } from 'src/notifications/microservice.provider';
+import { ClientProxy } from '@nestjs/microservices';
 
 jest.mock('bcrypt', () => ({
   ...jest.requireActual('bcrypt'),
@@ -30,6 +32,7 @@ jest.mock('class-transformer', () => ({
 describe('UsersService', () => {
   let usersService: UsersService;
   let usersRepository: UsersRepository;
+  let notificationsClient: ClientProxy;
   let validationService: ValidationService;
   let configService: ConfigService;
 
@@ -37,6 +40,12 @@ describe('UsersService', () => {
     const module: TestingModule = await Test.createTestingModule({
       imports: [ConfigModule.forRoot()],
       providers: [
+        {
+          provide: NOTIFICATIONS_SERVICE_TOKEN,
+          useValue: {
+            emit: jest.fn(),
+          },
+        },
         {
           provide: ValidationService,
           useValue: { validateDto: jest.fn() },
@@ -61,6 +70,7 @@ describe('UsersService', () => {
     usersRepository = module.get<UsersRepository>(UsersRepository);
     configService = module.get<ConfigService>(ConfigService);
     validationService = module.get<ValidationService>(ValidationService);
+    notificationsClient = module.get<ClientProxy>(NOTIFICATIONS_SERVICE_TOKEN);
   });
 
   it('it should be defined', () => {
@@ -80,7 +90,7 @@ describe('UsersService', () => {
         jest.mocked(plainToInstance).mockReturnValue(createUserDto);
         jest.spyOn(validationService, 'validateDto').mockResolvedValue([]);
 
-        const userFromDb = new User({
+        const retrievedUser = new User({
           id: 3,
           email: 'test@example.com',
           first_name: 'test',
@@ -92,7 +102,7 @@ describe('UsersService', () => {
 
         const createSpy = jest
           .spyOn(usersRepository, 'create')
-          .mockImplementation(async () => userFromDb);
+          .mockImplementation(async () => retrievedUser);
 
         const result = await usersService.create(createUserDto);
 
@@ -101,7 +111,7 @@ describe('UsersService', () => {
           password:
             '$2y$10$FtMJ2TEzs4pe0VSU1hu7l.4Mw4u/NFR2lZec2VTdTeK1j9obgt6fG',
         });
-        expect(result).toEqual(userFromDb);
+        expect(result).toEqual(retrievedUser);
       });
 
       it("should hash the user's plain text password before storing it", async () => {
@@ -127,6 +137,35 @@ describe('UsersService', () => {
           .mockRejectedValue(new Error('ValidationError'));
 
         await expect(usersService.create(createUserDto)).rejects.toThrow(Error);
+      });
+
+      it('should emit a "user_created" event with the created user data upon successful database write', async () => {
+        const retrievedUser = new User({
+          id: 3,
+          email: 'test@example.com',
+          first_name: 'test',
+          last_name: 'User',
+          role: 2,
+          created_at: new Date(),
+          updated_at: new Date(),
+        });
+
+        jest
+          .spyOn(validationService, 'validateDto')
+          .mockResolvedValue(undefined);
+
+        jest
+          .spyOn(usersRepository, 'create')
+          .mockImplementation(async () => retrievedUser);
+
+        const emitSpy = jest.spyOn(notificationsClient, 'emit');
+
+        await usersService.create(createUserDto);
+
+        expect(emitSpy).toHaveBeenCalledWith(
+          'user_created',
+          JSON.stringify({ data: retrievedUser }),
+        );
       });
     });
 
