@@ -25,7 +25,7 @@ export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  @RequirePermissions(2)
+  @RequirePermissions(1)
   async getAll(
     @Query() { filters }: FilterParams = {},
     @Query() { populate }: PopulateParams = {},
