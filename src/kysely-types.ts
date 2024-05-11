@@ -1,10 +1,15 @@
-import type { ColumnType } from "kysely";
+import type { ColumnType } from 'kysely';
 
-export type Generated<T> = T extends ColumnType<infer S, infer I, infer U>
-  ? ColumnType<S, I | undefined, U>
-  : ColumnType<T, T | undefined, T>;
+export type Generated<T> =
+  T extends ColumnType<infer S, infer I, infer U>
+    ? ColumnType<S, I | undefined, U>
+    : ColumnType<T, T | undefined, T>;
 
-export type Int8 = ColumnType<string, bigint | number | string, bigint | number | string>;
+export type Int8 = ColumnType<
+  string,
+  bigint | number | string,
+  bigint | number | string
+>;
 
 export type Json = ColumnType<JsonValue, string, string>;
 
@@ -715,42 +720,42 @@ export interface DB {
   roles_permissions: RolesPermissions;
   sectors: Sectors;
   skills: Skills;
-  "tiger.addr": TigerAddr;
-  "tiger.addrfeat": TigerAddrfeat;
-  "tiger.bg": TigerBg;
-  "tiger.county": TigerCounty;
-  "tiger.county_lookup": TigerCountyLookup;
-  "tiger.countysub_lookup": TigerCountysubLookup;
-  "tiger.cousub": TigerCousub;
-  "tiger.direction_lookup": TigerDirectionLookup;
-  "tiger.edges": TigerEdges;
-  "tiger.faces": TigerFaces;
-  "tiger.featnames": TigerFeatnames;
-  "tiger.geocode_settings": TigerGeocodeSettings;
-  "tiger.geocode_settings_default": TigerGeocodeSettingsDefault;
-  "tiger.loader_lookuptables": TigerLoaderLookuptables;
-  "tiger.loader_platform": TigerLoaderPlatform;
-  "tiger.loader_variables": TigerLoaderVariables;
-  "tiger.pagc_gaz": TigerPagcGaz;
-  "tiger.pagc_lex": TigerPagcLex;
-  "tiger.pagc_rules": TigerPagcRules;
-  "tiger.place": TigerPlace;
-  "tiger.place_lookup": TigerPlaceLookup;
-  "tiger.secondary_unit_lookup": TigerSecondaryUnitLookup;
-  "tiger.state": TigerState;
-  "tiger.state_lookup": TigerStateLookup;
-  "tiger.street_type_lookup": TigerStreetTypeLookup;
-  "tiger.tabblock": TigerTabblock;
-  "tiger.tabblock20": TigerTabblock20;
-  "tiger.tract": TigerTract;
-  "tiger.zcta5": TigerZcta5;
-  "tiger.zip_lookup": TigerZipLookup;
-  "tiger.zip_lookup_all": TigerZipLookupAll;
-  "tiger.zip_lookup_base": TigerZipLookupBase;
-  "tiger.zip_state": TigerZipState;
-  "tiger.zip_state_loc": TigerZipStateLoc;
-  "topology.layer": TopologyLayer;
-  "topology.topology": TopologyTopology;
+  'tiger.addr': TigerAddr;
+  'tiger.addrfeat': TigerAddrfeat;
+  'tiger.bg': TigerBg;
+  'tiger.county': TigerCounty;
+  'tiger.county_lookup': TigerCountyLookup;
+  'tiger.countysub_lookup': TigerCountysubLookup;
+  'tiger.cousub': TigerCousub;
+  'tiger.direction_lookup': TigerDirectionLookup;
+  'tiger.edges': TigerEdges;
+  'tiger.faces': TigerFaces;
+  'tiger.featnames': TigerFeatnames;
+  'tiger.geocode_settings': TigerGeocodeSettings;
+  'tiger.geocode_settings_default': TigerGeocodeSettingsDefault;
+  'tiger.loader_lookuptables': TigerLoaderLookuptables;
+  'tiger.loader_platform': TigerLoaderPlatform;
+  'tiger.loader_variables': TigerLoaderVariables;
+  'tiger.pagc_gaz': TigerPagcGaz;
+  'tiger.pagc_lex': TigerPagcLex;
+  'tiger.pagc_rules': TigerPagcRules;
+  'tiger.place': TigerPlace;
+  'tiger.place_lookup': TigerPlaceLookup;
+  'tiger.secondary_unit_lookup': TigerSecondaryUnitLookup;
+  'tiger.state': TigerState;
+  'tiger.state_lookup': TigerStateLookup;
+  'tiger.street_type_lookup': TigerStreetTypeLookup;
+  'tiger.tabblock': TigerTabblock;
+  'tiger.tabblock20': TigerTabblock20;
+  'tiger.tract': TigerTract;
+  'tiger.zcta5': TigerZcta5;
+  'tiger.zip_lookup': TigerZipLookup;
+  'tiger.zip_lookup_all': TigerZipLookupAll;
+  'tiger.zip_lookup_base': TigerZipLookupBase;
+  'tiger.zip_state': TigerZipState;
+  'tiger.zip_state_loc': TigerZipStateLoc;
+  'topology.layer': TopologyLayer;
+  'topology.topology': TopologyTopology;
   users: Users;
   users_jobs: UsersJobs;
   users_skills: UsersSkills;
