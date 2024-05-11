@@ -8,7 +8,6 @@ import { NestjsFormDataModule } from 'nestjs-form-data';
 import { join } from 'path';
 import type { RedisClientOptions } from 'redis';
 import { redisStore } from 'cache-manager-redis-yet';
-import configuration from './config/configuration';
 import { AdminModule } from './admin/admin.module';
 import { SettingsService } from './admin/services/settings.service';
 import { AppController } from './app.controller';
@@ -27,7 +26,6 @@ import { NotificationsModule } from './notifications/notifications.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      load: [configuration],
       validationSchema: envValidationSchema,
     }),
     DatabaseModule.forRootAsync({
