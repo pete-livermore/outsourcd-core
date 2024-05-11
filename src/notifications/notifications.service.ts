@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { EmailService } from './email.service';
-import { WelcomeUserDataDto } from './dto/welcome-user-data.dto';
 import { DynamicEmailData, EmailDataType } from './dto/email-data.dto';
 import { plainToInstance } from 'class-transformer';
 
@@ -8,10 +7,10 @@ import { plainToInstance } from 'class-transformer';
 export class NotificationsService {
   constructor(private emailService: EmailService) {}
 
-  async sendWelcomeEmail(userData: WelcomeUserDataDto) {
+  async sendWelcomeEmail(userEmail: string) {
     const data = plainToInstance(DynamicEmailData, {
       type: EmailDataType.DYNAMIC,
-      to: userData.email,
+      to: userEmail,
       templateId: '',
       dynamicTemplateData: {},
     });
