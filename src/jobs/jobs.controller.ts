@@ -40,8 +40,11 @@ export class JobsController {
   }
 
   @Get(':id')
-  async findById(@Param('id', ParseIntPipe) id: number) {
-    const user = await this.jobsService.findById(id);
+  async findById(
+    @Param('id', ParseIntPipe) id: number,
+    @Query() { populate }: PopulateParams = {},
+  ) {
+    const user = await this.jobsService.findById(id, populate);
 
     return { data: user };
   }

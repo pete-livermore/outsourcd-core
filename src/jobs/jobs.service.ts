@@ -4,6 +4,7 @@ import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { ValidationService } from 'src/validation/validation.service';
 import { CreateJobDto } from './dto/create-job.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
+import { PopulateJobDto } from './dto/populate-job.dto';
 
 @Injectable()
 export class JobsService {
@@ -17,8 +18,8 @@ export class JobsService {
     return this.jobsRepository.create(job);
   }
 
-  async findById(jobId: number) {
-    const job = await this.jobsRepository.findById(jobId);
+  async findById(jobId: number, populate: PopulateJobDto) {
+    const job = await this.jobsRepository.findById(jobId, populate);
 
     if (!job) {
       throw new NotFoundException();
