@@ -57,6 +57,7 @@ export class JobsRepository {
         coordinates: sql`ST_MakePoint(${x}, ${y})`,
         weekly_hours: data.weeklyHours,
         start_date: data.startDate,
+        company_id: data.company,
       })
       .returning([
         'id',
