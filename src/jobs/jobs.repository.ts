@@ -132,7 +132,7 @@ export class JobsRepository {
           }
         }
 
-        if (location.type) {
+        if (location?.type) {
           jobsQuery = jobsQuery.where('j.location_type', '=', location.type);
         }
       }

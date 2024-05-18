@@ -52,14 +52,12 @@ export class UploadsController {
     });
 
     try {
-      await this.filesService.create(fileDataToSave);
+      const file = await this.filesService.create(fileDataToSave);
+      return { data: file };
     } catch (e) {
       this.Logger.error(`problem saving file ${name} to the database`, e);
       await this.uploadsService.delete(public_id);
+      throw e;
     }
-
-    return {
-      message: 'File uploaded successfully',
-    };
   }
 }

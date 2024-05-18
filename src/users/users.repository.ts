@@ -35,6 +35,15 @@ export class UsersRepository {
     ).as('role');
   }
 
+  private withImage(eb: UserTableExpression) {
+    return jsonObjectFrom(
+      eb
+        .selectFrom('files as f')
+        .select(['f.id', 'f.url'])
+        .whereRef('f.id', '=', 'u.image_id'),
+    ).as('profile_image');
+  }
+
   async create(data: CreateUserDto): Promise<User> {
     try {
       const dbResponse = await this.db
@@ -91,7 +100,8 @@ export class UsersRepository {
         'u.created_at',
         'u.updated_at',
       ])
-      .$if(populate?.role, (qb) => qb.select((eb) => this.withRole(eb)));
+      .$if(populate?.role, (qb) => qb.select((eb) => this.withRole(eb)))
+      .$if(populate?.image, (qb) => qb.select((eb) => this.withImage(eb)));
 
     const dbResponse = await query.executeTakeFirst();
 
@@ -117,7 +127,8 @@ export class UsersRepository {
         'u.updated_at',
       ])
       .$if(populate?.role, (qb) => qb.select((eb) => this.withRole(eb)))
-      .$if(!populate?.role, (qb) => qb.select('u.role_id as role'));
+      .$if(!populate?.role, (qb) => qb.select('u.role_id as role'))
+      .$if(populate?.image, (qb) => qb.select((eb) => this.withImage(eb)));
 
     const dbResponse = await query.executeTakeFirst();
 
@@ -140,6 +151,7 @@ export class UsersRepository {
           'u.updated_at',
         ])
         .$if(populate?.role, (qb) => qb.select((eb) => this.withRole(eb)))
+        .$if(populate?.image, (qb) => qb.select((eb) => this.withImage(eb)))
         .orderBy('id')
         .offset(pagination.offset)
         .limit(pagination.limit);
@@ -147,11 +159,6 @@ export class UsersRepository {
       if (pagination.limit !== null) {
         usersQuery = usersQuery.limit(pagination.limit);
       }
-      // .$if(populate.image, (eb) =>
-      //   eb
-      //     .leftJoin('upload as up', 'up.id', 'us.image_id')
-      //     .select(['up.id', 'up.url']),
-      // );
 
       if (filters) {
         const { email, role } = filters;

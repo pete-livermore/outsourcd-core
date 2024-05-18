@@ -25,8 +25,8 @@ export class CompaniesRepository {
       eb
         .selectFrom('files as f')
         .select(['f.id', 'f.url'])
-        .whereRef('c.logo_image', '=', 'c.id'),
-    ).as('logo');
+        .whereRef('c.image_id', '=', 'c.id'),
+    ).as('logo_image');
   }
 
   private withSector(eb: JobTableExpression) {
