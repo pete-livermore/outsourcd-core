@@ -1,9 +1,10 @@
-import { ApiProperty } from '@nestjs/swagger';
+import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
   IsBoolean,
   IsEmail,
   IsInt,
   IsNotEmpty,
+  IsOptional,
   IsString,
   Min,
 } from 'class-validator';
@@ -34,6 +35,12 @@ export class CreateUserDto {
   @IsInt()
   @Min(1)
   role: number;
+
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsInt()
+  @Min(1)
+  profile_image?: number;
 
   @ApiProperty()
   @IsNotEmpty()
