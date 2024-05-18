@@ -3,7 +3,7 @@ import { Kysely, sql } from 'kysely';
 export async function up(database: Kysely<unknown>): Promise<void> {
   await database.schema
     .alterTable('companies')
-    .addColumn('logo_image', 'integer', (col) => col.references('companies.id'))
+    .addColumn('image_id', 'integer', (col) => col.references('files.id'))
     .execute();
 
   await database.schema
@@ -22,7 +22,7 @@ export async function up(database: Kysely<unknown>): Promise<void> {
 export async function down(database: Kysely<unknown>): Promise<void> {
   await database.schema
     .alterTable('companies')
-    .dropColumn('logo_image')
+    .dropColumn('image_id')
     .execute();
 
   await database.schema
