@@ -5,12 +5,18 @@ interface PopulatedRole {
   name: string;
 }
 
+interface PopulatedImage {
+  id: number;
+  url: string;
+}
+
 export interface UserModelData {
   id: number;
   first_name: string;
   last_name: string;
   email: string;
   role?: number | PopulatedRole;
+  profile_image?: PopulatedImage | null;
   created_at: Date;
   updated_at: Date;
 }
@@ -24,6 +30,7 @@ export class User {
   email: string;
 
   role: number | PopulatedRole;
+  profileImage?: PopulatedImage | null;
   createdAt: Date;
   updatedAt: Date;
 
@@ -35,6 +42,7 @@ export class User {
     this.role = data.role;
     this.createdAt = data.created_at;
     this.updatedAt = data.updated_at;
+    this.profileImage = data.profile_image;
   }
 }
 
