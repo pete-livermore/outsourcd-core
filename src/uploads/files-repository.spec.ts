@@ -59,6 +59,10 @@ describe('Files repository', () => {
           ext: 'jpg',
           mime: 'image/jpeg',
           description: '',
+          provider_metadata: {
+            public_id: '12345',
+            resource_type: 'image',
+          },
         };
         executeTakeFirstOrThrowMock.mockResolvedValue(fileModelData);
       });
