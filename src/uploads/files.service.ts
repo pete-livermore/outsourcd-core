@@ -13,4 +13,12 @@ export class FilesService {
   create(createFileDto: CreateFileDto) {
     return this.filesRepository.create(createFileDto);
   }
+
+  findById(fileId: number) {
+    return this.filesRepository.findById(fileId);
+  }
+
+  delete(fileId: number) {
+    return this.filesRepository.delete(fileId);
+  }
 }
