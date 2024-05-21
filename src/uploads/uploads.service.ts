@@ -8,6 +8,7 @@ import {
 import * as fs from 'fs';
 import * as path from 'path';
 import { FileValidationService } from './file-validation.service';
+import { UPLOAD_FOLDER_NAME } from './constants/upload-folder-name';
 
 interface DestroyOptions {
   resource_type?: ResourceType;
@@ -33,7 +34,7 @@ export class UploadsService {
 
     const uploadResponse = await cloudinary.uploader.upload(tempFilePath, {
       ...options,
-      folder: 'manageable_users',
+      folder: UPLOAD_FOLDER_NAME,
     });
 
     await fs.promises.unlink(tempFilePath);
@@ -41,9 +42,7 @@ export class UploadsService {
     return uploadResponse;
   }
 
-  delete(publicId: string, options?: DestroyOptions) {
-    return cloudinary.uploader.destroy(publicId, options);
+  async delete(publicId: string, options?: DestroyOptions) {
+    await cloudinary.uploader.destroy(publicId, options);
   }
-
-  uploadAndCreate() {}
 }

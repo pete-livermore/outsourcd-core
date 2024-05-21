@@ -30,6 +30,11 @@ export class CreateUserDto {
   @IsString()
   lastName: string;
 
+  @ApiPropertyOptional()
+  @IsOptional()
+  @IsString()
+  biography?: string;
+
   @ApiProperty()
   @IsNotEmpty()
   @IsInt()
@@ -40,7 +45,7 @@ export class CreateUserDto {
   @IsOptional()
   @IsInt()
   @Min(1)
-  profile_image?: number;
+  profileImage?: number;
 
   @ApiProperty()
   @IsNotEmpty()

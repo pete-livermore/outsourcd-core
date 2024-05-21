@@ -1,7 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
+  Get,
+  HttpCode,
   Logger,
+  NotFoundException,
+  Param,
   ParseFilePipe,
   Post,
   UploadedFile,
@@ -59,5 +64,25 @@ export class UploadsController {
       await this.uploadsService.delete(public_id);
       throw e;
     }
+  }
+
+  @Get('file/:id')
+  async findById(@Param() params: { id: number }) {
+    return this.filesService.findById(params.id);
+  }
+
+  @Delete('file/:id')
+  @HttpCode(204)
+  async delete(@Param() params: { id: number }) {
+    const fileToDelete = await this.filesService.findById(params.id);
+
+    if (!fileToDelete) {
+      throw new NotFoundException();
+    }
+
+    await this.filesService.delete(params.id);
+
+    const { public_id } = fileToDelete.providerMetadata;
+    await this.uploadsService.delete(public_id);
   }
 }

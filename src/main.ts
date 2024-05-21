@@ -11,6 +11,7 @@ import { SnakeCaseToCamelCasePipe } from './common/pipes/snake-to-camel.pipe';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { notificationsConfig } from './notifications/microservice.provider';
+import { CamelCaseToSnakeCaseInterceptor } from './common/interceptors/camel-to-snake.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -37,7 +38,10 @@ async function bootstrap() {
       // forbidNonWhitelisted: true,
     }),
   );
-  app.useGlobalInterceptors(new ClassSerializerInterceptor(app.get(Reflector)));
+  app.useGlobalInterceptors(
+    new ClassSerializerInterceptor(app.get(Reflector)),
+    new CamelCaseToSnakeCaseInterceptor(),
+  );
   app.enableCors();
 
   const config = new DocumentBuilder()

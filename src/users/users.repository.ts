@@ -55,6 +55,8 @@ export class UsersRepository {
           last_name: data.lastName,
           role_id: data.role,
           is_confirmed: data.isConfirmed,
+          biography: data.biography,
+          image_id: data.profileImage,
         })
         .returning([
           'id',
@@ -197,6 +199,11 @@ export class UsersRepository {
         email: data.email,
         first_name: data.firstName,
         last_name: data.lastName,
+        biography: data.biography,
+        image_id: data.profileImage,
+        password: data.password,
+        is_confirmed: data.isConfirmed,
+        role_id: data.role,
         updated_at: new Date(),
       })
       .where('u.id', '=', userId)
