@@ -1,73 +1,108 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Outsourcd
+Outsourcd is a web application that allows users to search, view, and apply for jobs. 
+This repo contains the code for the backend of the application. Built using NestJS, it was built to handle the management of data underpinning users, job listings, and applications.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+## Features
+- User, Job and Company management (entity CRUD)
+- Media file creation and upload integration with Cloudinary
+- Integration with Sengrid for emailing functionality
+- JWT-based authentication
+- Caching
+- Message queue functionality
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Tech
+- NestJS
+- TypeScript
+- PostgreSQL
+- Redis
+- Bull
+- Docker
 
-## Description
+## Getting Started
+### Prerequisites
+- Node.js
+- npm or yarn
+- Docker (optional) or PostgreSQL
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
-
-## Installation
-
+### Installation
+1. Clone the repository:
 ```bash
-$ npm install
+git clone https://github.com/your-username/outsourcd.git
+cd outsourcd
 ```
 
-## Running the app
-
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+2. Install dependencies:
+``` bash
+npm install
+# or
+yarn install
 ```
 
-## Test
-
-```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+3. Set up environment variables:
+Create a .env file in the root directory and add the following variables:
+``` bash
+JWT_SECRET=your_jwt_secret
+API_VERSION=your_api_version
+CACHE_TTL=your_cache_ttl
+CLOUDINARY_CLOUD_NAME=your_cloudinary_cloud_name
+CLOUDINARY_API_KEY=your_cloudinary_api_key
+CLOUDINARY_API_SECRET=your_cloudinary_api_secret
+JWT_SECRET=your_jwt_secret
+JWT_EXPIRY=your_jwt_expiry_time
+MAX_UPLOAD_FILE_SIZE=your_max_upload_size (bytes)
+OPEN_API_DESCRIPTION=your_api_description
+OPEN_API_TITLE=your_api_title
+PASSWORD_SALT_ROUNDS=number_of_salt_rounds
+POSTGRES_HOST=your_database_host (localhost for local dev)
+POSTGRES_PORT=your_database_port
+POSTGRES_USER=your_database_user
+POSTGRES_PASSWORD=your_database_password
+POSTGRES_DB=your_database_name
+REDIS_HOST=your_database_host (localhost for local dev)
+REDIS_CACHE_PORT=your_redis_port
+REDIS_QUEUE_PORT=another_redis_port
 ```
 
-## Support
+4. Set up the infrastructure:
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+_Option 1 (containers):_
+- Make sure the Docker daemon is running
+``` bash
+npm run infrastructure:up
+# or
+yarn infrastructure:up
+```
 
-## Stay in touch
+_Option 2_
+- Create a local Postgres instance
+- Run 2 local Redis instances
+- Ensure that the ports match those in the environment variables
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+5. Run the database migrations:
+``` bash
+npm run db:migrate
+# or
+yarn db:migrate
+```
+
+6. Introspect the DB to get types:
+``` bash
+npm run db:pull
+# or
+yarn db:pull
+```
+
+## Running the Application
+Start the NestJS server:
+``` bash
+npm run start:dev
+# or
+yarn start:dev
+```
+The application will be running on http://localhost:3333. If you wish to change the port, simply populate the `APP_PORT` environment variable with your chosen port.
+
+API Documentation
+Outsourcd uses Swagger for API documentation. Once the server is running, you can access the documentation at http://localhost:3000/api.
 
 ## License
-
-Nest is [MIT licensed](LICENSE).
+This project is licensed under the MIT License - see the LICENSE file for details.
