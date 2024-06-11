@@ -99,6 +99,16 @@ yarn db:migrate
 
 6. Introspect the DB to get types:
 
+- Run the script to generate the DATABASE_URL environment variable:
+
+```bash
+npm run db:build-url
+# or
+yarn db:build-url
+```
+
+- Pull the types from the DB:
+
 ```bash
 npm run db:pull
 # or
