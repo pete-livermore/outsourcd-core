@@ -7,6 +7,7 @@
   "license": "UNLICENSED",
   "scripts": {
     "build": "nest build",
+    "db:build-url": "node scripts/build-database-url.js",
     "db:migrate": "ts-node ./src/run-migrations.ts",
     "db:pull": "kysely-codegen --out-file ./src/kysely-types.ts --exclude-pattern spatial_ref_sys",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
