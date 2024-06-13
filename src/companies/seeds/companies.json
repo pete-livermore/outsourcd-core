@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "name": "Tech Innovators Inc.",
+    "sector_id": 1,
+    "description": "Leading the future of technology with innovative solutions."
+  },
+  {
+    "id": 2,
+    "name": "Green Energy Solutions",
+    "sector_id": 2,
+    "description": "Providing sustainable energy solutions for a greener planet."
+  },
+  {
+    "id": 3,
+    "name": "HealthFirst Medical Group",
+    "sector_id": 3,
+    "description": "Committed to delivering top-notch healthcare services."
+  },
+  {
+    "id": 4,
+    "name": "EduLearn Academy",
+    "sector_id": 4,
+    "description": "Transforming education through technology and personalized learning."
+  },
+  {
+    "id": 5,
+    "name": "Finance Plus",
+    "sector_id": 5,
+    "description": "Offering comprehensive financial services and solutions."
+  },
+  {
+    "id": 6,
+    "name": "Creative Designs Studio",
+    "sector_id": 6,
+    "description": "Bringing creativity to life with unique and innovative designs."
+  },
+  {
+    "id": 7,
+    "name": "Global Logistics Corp",
+    "sector_id": 7,
+    "description": "Providing reliable and efficient logistics and supply chain solutions."
+  },
+  {
+    "id": 8,
+    "name": "Smart Retail Solutions",
+    "sector_id": 8,
+    "description": "Revolutionizing retail with cutting-edge technology and services."
+  },
+  {
+    "id": 9,
+    "name": "BuildRight Construction",
+    "sector_id": 9,
+    "description": "Delivering high-quality construction projects on time and within budget."
+  },
+  {
+    "id": 10,
+    "name": "Foodies Delight",
+    "sector_id": 10,
+    "description": "Offering a wide variety of gourmet food products and culinary experiences."
+  }
+]
