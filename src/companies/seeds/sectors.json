@@ -1,0 +1,42 @@
+[
+  {
+    "id": 1,
+    "name": "Technology"
+  },
+  {
+    "id": 2,
+    "name": "Energy"
+  },
+  {
+    "id": 3,
+    "name": "Healthcare"
+  },
+  {
+    "id": 4,
+    "name": "Education"
+  },
+  {
+    "id": 5,
+    "name": "Finance"
+  },
+  {
+    "id": 6,
+    "name": "Design"
+  },
+  {
+    "id": 7,
+    "name": "Logistics"
+  },
+  {
+    "id": 8,
+    "name": "Retail"
+  },
+  {
+    "id": 9,
+    "name": "Construction"
+  },
+  {
+    "id": 10,
+    "name": "Food & Beverage"
+  }
+]
