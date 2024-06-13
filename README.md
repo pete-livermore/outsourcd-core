@@ -115,6 +115,14 @@ npm run db:pull
 yarn db:pull
 ```
 
+7. Seed the database:
+
+```bash
+npm run db:seed
+# or
+yarn db:seed
+```
+
 ## Running the Application
 
 Start the NestJS server:
