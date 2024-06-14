@@ -14,7 +14,7 @@ export class JobModelData {
   title: string;
   description: string;
   company?: CompanyRelation | null;
-  salary?: JobSalary;
+  salary: JobSalary;
   location_type: string;
 }
 
@@ -24,6 +24,7 @@ export class Job {
   description: string;
   company?: CompanyRelation | null;
   locationType: string;
+  salary: JobSalary;
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -31,5 +32,6 @@ export class Job {
     this.description = data.description;
     this.company = data.company;
     this.locationType = data.location_type;
+    this.salary = data.salary;
   }
 }

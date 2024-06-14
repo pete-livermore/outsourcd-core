@@ -69,6 +69,7 @@ export class JobsRepository {
         'weekly_hours',
         'created_at',
         'updated_at',
+        this.selectSalary(),
       ])
       .executeTakeFirstOrThrow();
 
@@ -171,6 +172,7 @@ export class JobsRepository {
         'j.location_type',
         'j.created_at',
         'j.updated_at',
+        this.selectSalary(),
       ])
       .executeTakeFirst();
 
