@@ -16,6 +16,7 @@ export class JobModelData {
   company?: CompanyRelation | null;
   salary: JobSalary;
   location_type: string;
+  start_date: Date;
 }
 
 export class Job {
@@ -25,6 +26,7 @@ export class Job {
   company?: CompanyRelation | null;
   locationType: string;
   salary: JobSalary;
+  startDate: string;
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -33,5 +35,6 @@ export class Job {
     this.company = data.company;
     this.locationType = data.location_type;
     this.salary = data.salary;
+    this.startDate = data.start_date.toISOString();
   }
 }
