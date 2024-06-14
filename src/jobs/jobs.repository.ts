@@ -1,4 +1,4 @@
-import { Job, SalaryRelation } from './job.model';
+import { Job, JobSalary } from './job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -30,7 +30,7 @@ export class JobsRepository {
   }
 
   private selectSalary() {
-    return sql<SalaryRelation>`json_build_object(
+    return sql<JobSalary>`json_build_object(
       'currency', salary_currency, 
       'value',  json_build_object(
           'min', salary_min_value, 

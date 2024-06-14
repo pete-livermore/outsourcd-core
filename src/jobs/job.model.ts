@@ -3,7 +3,7 @@ interface CompanyRelation {
   name: string;
 }
 
-export interface SalaryRelation {
+export interface JobSalary {
   currency: string;
   value: { min: number; max: number };
   period: string;
@@ -14,7 +14,7 @@ export class JobModelData {
   title: string;
   description: string;
   company?: CompanyRelation | null;
-  salary?: SalaryRelation;
+  salary?: JobSalary;
   location_type: string;
 }
 
