@@ -44,24 +44,24 @@ export class JobsController {
     @Param('id', ParseIntPipe) id: number,
     @Query() { populate }: PopulateParams = {},
   ) {
-    const user = await this.jobsService.findById(id, populate);
+    const job = await this.jobsService.findById(id, populate);
 
-    return { data: user };
+    return { data: job };
   }
 
   @Post()
   @HttpCode(201)
   async create(@Body() data: CreateJobDto) {
-    const user = await this.jobsService.create(data);
+    const job = await this.jobsService.create(data);
 
-    return { data: user };
+    return { data: job };
   }
 
   @Put(':id')
   async put(
     @Param() params: { id: number },
-    @Body() updateUserDto: UpdateJobDto,
+    @Body() updateJobDto: UpdateJobDto,
   ) {
-    return this.jobsService.update(params.id, updateUserDto);
+    return this.jobsService.update(params.id, updateJobDto);
   }
 }
