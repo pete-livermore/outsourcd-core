@@ -4,7 +4,7 @@ import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
 import { Database, Tables } from '../database/database';
 import { Injectable } from '@nestjs/common';
-import { jsonObjectFrom } from 'kysely/helpers/postgres';
+import { jsonArrayFrom, jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
 import { PopulateJobDto } from './dto/populate-job.dto';
@@ -29,6 +29,16 @@ export class JobsRepository {
     ).as('company');
   }
 
+  private withApplicants(eb: JobTableExpression) {
+    return jsonArrayFrom(
+      eb
+        .selectFrom('users_jobs as uj')
+        .select('uj.user_id as id')
+        .whereRef('uj.job_id', '=', 'j.id')
+        .where('uj.role', '=', 'applicant'),
+    ).as('applicants');
+  }
+
   private selectSalary() {
     return sql<JobSalary>`json_build_object(
       'currency', salary_currency, 
@@ -37,6 +47,10 @@ export class JobsRepository {
           'max', salary_max_value
         ), 
       'period', salary_period)`.as('salary');
+  }
+
+  buildQuery() {
+    return this.db;
   }
 
   async create(data: CreateJobDto): Promise<Job> {
@@ -94,7 +108,10 @@ export class JobsRepository {
         'j.created_at',
         'j.updated_at',
       ])
-      .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)));
+      .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
+      .$if(populate?.applicants, (qb) =>
+        qb.select((eb) => this.withApplicants(eb)),
+      );
 
     const dbResponse = await query.executeTakeFirst();
 
@@ -119,6 +136,9 @@ export class JobsRepository {
         ])
 
         .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
+        .$if(populate?.applicants, (qb) =>
+          qb.select((eb) => this.withApplicants(eb)),
+        )
         .orderBy('id')
         .offset(pagination.offset)
         .limit(pagination.limit);

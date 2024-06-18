@@ -693,6 +693,7 @@ export interface Users {
 export interface UsersJobs {
   created_at: Generated<Timestamp>;
   job_id: number | null;
+  role: string;
   updated_at: Generated<Timestamp>;
   user_id: number | null;
 }

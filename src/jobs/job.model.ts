@@ -3,6 +3,10 @@ interface CompanyRelation {
   name: string;
 }
 
+export interface JobApplicant {
+  id: number;
+}
+
 export interface JobSalary {
   currency: string;
   value: { min: number; max: number };
@@ -17,6 +21,7 @@ export class JobModelData {
   salary: JobSalary;
   location_type: string;
   start_date: Date;
+  applicants?: JobApplicant[];
 }
 
 export class Job {
@@ -27,6 +32,7 @@ export class Job {
   locationType: string;
   salary: JobSalary;
   startDate: string;
+  applicants: JobApplicant[];
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -36,5 +42,6 @@ export class Job {
     this.locationType = data.location_type;
     this.salary = data.salary;
     this.startDate = data.start_date.toISOString();
+    this.applicants = data.applicants;
   }
 }

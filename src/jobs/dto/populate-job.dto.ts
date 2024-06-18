@@ -10,5 +10,10 @@ export class PopulateJobDto {
   @Expose()
   @IsOptional()
   @IsBoolean()
+  owner?: boolean;
+
+  @Expose()
+  @IsOptional()
+  @IsBoolean()
   company?: boolean;
 }

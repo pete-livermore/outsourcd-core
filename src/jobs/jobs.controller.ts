@@ -16,6 +16,7 @@ import { UpdateJobDto } from './dto/update-job.dto';
 import { FilterParams } from 'src/common/dto/filter-params';
 import { PopulateParams } from 'src/common/dto/populate-params';
 import { PaginationParams } from 'src/common/dto/pagination-params';
+import { AddApplicantDto } from './dto/add-applicant-dto';
 
 @Controller('jobs')
 export class JobsController {
@@ -63,5 +64,14 @@ export class JobsController {
     @Body() updateJobDto: UpdateJobDto,
   ) {
     return this.jobsService.update(params.id, updateJobDto);
+  }
+
+  @Post(':id/applicants')
+  async addApplicant(
+    @Param('id') jobId: number,
+    @Body() { userId }: AddApplicantDto,
+  ) {
+    await this.jobsService.addApplicant(jobId, userId);
+    return { message: 'Applicant added successfully' };
   }
 }
