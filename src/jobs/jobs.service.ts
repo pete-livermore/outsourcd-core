@@ -44,12 +44,4 @@ export class JobsService {
 
     return await this.jobsRepository.update(jobId, jobUpdate);
   }
-
-  async addApplicant(jobId: number, userId: number) {
-    await this.jobsRepository
-      .buildQuery()
-      .insertInto('users_jobs')
-      .values({ user_id: userId, job_id: jobId, role: 'applicant' })
-      .execute();
-  }
 }
