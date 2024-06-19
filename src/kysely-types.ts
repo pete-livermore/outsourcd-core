@@ -65,6 +65,16 @@ export interface GeometryColumns {
   type: string | null;
 }
 
+export interface JobApplications {
+  cover_letter: string | null;
+  created_at: Generated<Timestamp>;
+  job_id: number;
+  min_salary_expectation: number;
+  status: string;
+  updated_at: Generated<Timestamp>;
+  user_id: number;
+}
+
 export interface Jobs {
   city: string;
   company_id: number | null;
@@ -690,14 +700,6 @@ export interface Users {
   updated_at: Generated<Timestamp>;
 }
 
-export interface UsersJobs {
-  created_at: Generated<Timestamp>;
-  job_id: number | null;
-  role: string;
-  updated_at: Generated<Timestamp>;
-  user_id: number | null;
-}
-
 export interface UsersSkills {
   created_at: Generated<Timestamp>;
   skill_id: number | null;
@@ -710,6 +712,7 @@ export interface DB {
   files: Files;
   geography_columns: GeographyColumns;
   geometry_columns: GeometryColumns;
+  job_applications: JobApplications;
   jobs: Jobs;
   jobs_skills: JobsSkills;
   permissions: Permissions;
@@ -754,6 +757,5 @@ export interface DB {
   "topology.layer": TopologyLayer;
   "topology.topology": TopologyTopology;
   users: Users;
-  users_jobs: UsersJobs;
   users_skills: UsersSkills;
 }

@@ -7,7 +7,7 @@ import {
   Jobs as JobsTable,
   Skills as SkillsTable,
   JobsSkills as JobsSkillsTable,
-  UsersJobs as UsersJobsTable,
+  JobApplications as JobApplicationsTable,
   UsersSkills as UsersSkillsTable,
   RolesPermissions as RolesPermissionsTable,
   Companies as CompaniesTable,
@@ -25,7 +25,7 @@ export interface Tables {
   sectors: SectorsTable;
   jobs_skills: JobsSkillsTable;
   users_skills: UsersSkillsTable;
-  users_jobs: UsersJobsTable;
+  job_applications: JobApplicationsTable;
   companies: CompaniesTable;
 }
 
