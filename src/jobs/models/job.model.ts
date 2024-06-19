@@ -3,8 +3,8 @@ interface CompanyRelation {
   name: string;
 }
 
-export interface JobApplicant {
-  id: number;
+export interface JobApplicationRelation {
+  user_id: number;
 }
 
 export interface JobSalary {
@@ -21,7 +21,7 @@ export class JobModelData {
   salary: JobSalary;
   location_type: string;
   start_date: Date;
-  applicants?: JobApplicant[];
+  applications?: JobApplicationRelation[];
 }
 
 export class Job {
@@ -32,7 +32,7 @@ export class Job {
   locationType: string;
   salary: JobSalary;
   startDate: string;
-  applicants: JobApplicant[];
+  applications: { userId: number }[];
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -42,6 +42,8 @@ export class Job {
     this.locationType = data.location_type;
     this.salary = data.salary;
     this.startDate = data.start_date.toISOString();
-    this.applicants = data.applicants;
+    this.applications = data.applications.map((app) => ({
+      userId: app.user_id,
+    }));
   }
 }

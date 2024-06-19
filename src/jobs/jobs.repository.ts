@@ -1,4 +1,4 @@
-import { Job, JobSalary } from './job.model';
+import { Job, JobSalary } from './models/job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
@@ -29,14 +29,13 @@ export class JobsRepository {
     ).as('company');
   }
 
-  private withApplicants(eb: JobTableExpression) {
+  private withApplications(eb: JobTableExpression) {
     return jsonArrayFrom(
       eb
-        .selectFrom('users_jobs as uj')
-        .select('uj.user_id as id')
-        .whereRef('uj.job_id', '=', 'j.id')
-        .where('uj.role', '=', 'applicant'),
-    ).as('applicants');
+        .selectFrom('job_applications as ja')
+        .select(['ja.user_id'])
+        .whereRef('ja.job_id', '=', 'j.id'),
+    ).as('applications');
   }
 
   private selectSalary() {
@@ -56,6 +55,7 @@ export class JobsRepository {
   async create(data: CreateJobDto): Promise<Job> {
     const { location, salary } = data;
     const [x, y] = location.coordinates;
+
     const dbResponse = await this.db
       .insertInto('jobs')
       .values({
@@ -109,8 +109,8 @@ export class JobsRepository {
         'j.updated_at',
       ])
       .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
-      .$if(populate?.applicants, (qb) =>
-        qb.select((eb) => this.withApplicants(eb)),
+      .$if(populate?.applications, (qb) =>
+        qb.select((eb) => this.withApplications(eb)),
       );
 
     const dbResponse = await query.executeTakeFirst();
@@ -136,8 +136,8 @@ export class JobsRepository {
         ])
 
         .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
-        .$if(populate?.applicants, (qb) =>
-          qb.select((eb) => this.withApplicants(eb)),
+        .$if(populate?.applications, (qb) =>
+          qb.select((eb) => this.withApplications(eb)),
         )
         .orderBy('id')
         .offset(pagination.offset)
