@@ -1,6 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { JobsController } from './jobs.controller';
 import { JobsService } from './jobs.service';
+import { JobApplicationsService } from './job-applications.service';
 
 describe('JobsController', () => {
   let controller: JobsController;
@@ -10,6 +11,16 @@ describe('JobsController', () => {
       providers: [
         {
           provide: JobsService,
+          useValue: {
+            create: jest.fn(),
+            findById: jest.fn(),
+            getAll: jest.fn(),
+            update: jest.fn(),
+            delete: jest.fn(),
+          },
+        },
+        {
+          provide: JobApplicationsService,
           useValue: {
             create: jest.fn(),
             findById: jest.fn(),
