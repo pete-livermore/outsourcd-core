@@ -5,7 +5,7 @@ export class PopulateJobDto {
   @Expose()
   @IsOptional()
   @IsBoolean()
-  applicants?: boolean;
+  applications?: boolean;
 
   @Expose()
   @IsOptional()
