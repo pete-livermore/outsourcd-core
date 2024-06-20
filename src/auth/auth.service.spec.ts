@@ -92,7 +92,7 @@ describe('AuthService', () => {
         },
         { secret: 'fake_secret' },
       );
-      expect(result).toEqual({ token });
+      expect(result).toEqual({ token, user: { id: user.id } });
     });
 
     it("should throw an UnauthorizedException if the user can't be found", async () => {

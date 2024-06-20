@@ -13,7 +13,10 @@ export class AuthService {
     private jwtService: JwtService,
   ) {}
 
-  async signIn(email: string, pass: string): Promise<{ token: string }> {
+  async signIn(
+    email: string,
+    pass: string,
+  ): Promise<{ token: string; user: { id: number } }> {
     let user: UnsanitizedUser;
 
     try {
@@ -34,6 +37,6 @@ export class AuthService {
       secret: this.configService.get('JWT_SECRET'),
     });
 
-    return { token };
+    return { token, user: { id: user.id } };
   }
 }

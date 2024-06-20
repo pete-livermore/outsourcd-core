@@ -50,7 +50,7 @@ describe('AuthController', () => {
         email: 'test@example.com',
         password: 'testPassword',
       };
-      const expectedResult = { token: 'testToken' };
+      const expectedResult = { token: 'testToken', user: { id: 5 } };
 
       jest.spyOn(authService, 'signIn').mockResolvedValue(expectedResult);
 
