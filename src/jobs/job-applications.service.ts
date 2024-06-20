@@ -15,7 +15,6 @@ export class JobApplicationsService {
       newApplication,
       CreateJobApplicationDto,
     );
-    console.log('new application =>', newApplication);
     return this.jobApplicationsRepository.create(newApplication);
   }
 }
