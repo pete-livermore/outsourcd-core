@@ -42,7 +42,7 @@ export class Job {
     this.locationType = data.location_type;
     this.salary = data.salary;
     this.startDate = data.start_date.toISOString();
-    this.applications = data.applications.map((app) => ({
+    this.applications = data.applications?.map((app) => ({
       userId: app.user_id,
     }));
   }
