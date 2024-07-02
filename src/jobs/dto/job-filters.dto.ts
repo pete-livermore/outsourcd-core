@@ -1,5 +1,11 @@
 import { Expose, Type } from 'class-transformer';
-import { IsIn, IsObject, IsOptional, ValidateNested } from 'class-validator';
+import {
+  IsArray,
+  IsIn,
+  IsObject,
+  IsOptional,
+  ValidateNested,
+} from 'class-validator';
 import { EMPLOYMENT_TYPES } from '../constants/employment-types';
 import { LOCATION_TYPES } from '../constants/location-types';
 
@@ -13,8 +19,9 @@ class LocationFiltersDto {
 export class JobFiltersDto {
   @Expose()
   @IsOptional()
-  @IsIn(EMPLOYMENT_TYPES)
-  employmentType?: string;
+  @IsArray()
+  @IsIn(EMPLOYMENT_TYPES, { each: true })
+  employmentTypes?: typeof EMPLOYMENT_TYPES;
 
   @Expose()
   @IsOptional()

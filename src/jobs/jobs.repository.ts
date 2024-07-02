@@ -5,7 +5,7 @@ import { UpdateJobDto } from './dto/update-job.dto';
 import { Database, Tables } from '../database/database';
 import { Injectable } from '@nestjs/common';
 import { jsonArrayFrom, jsonObjectFrom } from 'kysely/helpers/postgres';
-import { ExpressionBuilder, sql } from 'kysely';
+import { Expression, ExpressionBuilder, SqlBool, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
 import { PopulateJobDto } from './dto/populate-job.dto';
 
@@ -81,6 +81,7 @@ export class JobsRepository {
         'city',
         'country',
         'weekly_hours',
+        'employment_type',
         'start_date',
         'created_at',
         'updated_at',
@@ -105,6 +106,7 @@ export class JobsRepository {
         'j.start_date',
         this.selectSalary(),
         'j.location_type',
+        'j.employment_type',
         'j.created_at',
         'j.updated_at',
       ])
@@ -132,6 +134,7 @@ export class JobsRepository {
           'j.start_date',
           'j.created_at',
           'j.updated_at',
+          'j.employment_type',
           this.selectSalary(),
         ])
 
@@ -148,12 +151,18 @@ export class JobsRepository {
       }
 
       if (filters) {
-        const { employmentType, location } = filters;
+        const { employmentTypes, location } = filters;
 
-        if (employmentType) {
-          if (employmentType === 'permanent') {
-            jobsQuery = jobsQuery.where('j.end_date', 'is', null);
-          }
+        if (employmentTypes?.length) {
+          jobsQuery = jobsQuery.where((eb) => {
+            const ors: Expression<SqlBool>[] = [];
+
+            employmentTypes.forEach((emt) =>
+              ors.push(eb('employment_type', '=', emt)),
+            );
+
+            return eb.or(ors);
+          });
         }
 
         if (location?.type) {
@@ -193,6 +202,7 @@ export class JobsRepository {
         'j.title',
         'j.description',
         'j.location_type',
+        'j.employment_type',
         'j.start_date',
         'j.created_at',
         'j.updated_at',
