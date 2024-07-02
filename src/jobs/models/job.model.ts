@@ -22,6 +22,7 @@ export class JobModelData {
   location_type: string;
   start_date: Date;
   applications?: JobApplicationRelation[];
+  employment_type: string;
 }
 
 export class Job {
@@ -33,6 +34,7 @@ export class Job {
   salary: JobSalary;
   startDate: string;
   applications: { userId: number }[];
+  employmentType: string;
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -41,6 +43,7 @@ export class Job {
     this.company = data.company;
     this.locationType = data.location_type;
     this.salary = data.salary;
+    this.employmentType = data.employment_type;
     this.startDate = data.start_date.toISOString();
     this.applications = data.applications?.map((app) => ({
       userId: app.user_id,

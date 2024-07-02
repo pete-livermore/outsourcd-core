@@ -82,6 +82,7 @@ export interface Jobs {
   country: string;
   created_at: Generated<Timestamp>;
   description: string;
+  employment_type: Generated<string>;
   end_date: Timestamp | null;
   id: Generated<number>;
   location_type: string;
