@@ -48,10 +48,6 @@ export class JobsRepository {
       'period', salary_period)`.as('salary');
   }
 
-  buildQuery() {
-    return this.db;
-  }
-
   async create(data: CreateJobDto): Promise<Job> {
     const { location, salary } = data;
     const [x, y] = location.coordinates;
@@ -151,22 +147,30 @@ export class JobsRepository {
       }
 
       if (filters) {
-        const { employmentTypes, location } = filters;
+        const { employmentTypes, locationTypes } = filters;
 
         if (employmentTypes?.length) {
           jobsQuery = jobsQuery.where((eb) => {
             const ors: Expression<SqlBool>[] = [];
 
             employmentTypes.forEach((emt) =>
-              ors.push(eb('employment_type', '=', emt)),
+              ors.push(eb('j.employment_type', '=', emt)),
             );
 
             return eb.or(ors);
           });
         }
 
-        if (location?.type) {
-          jobsQuery = jobsQuery.where('j.location_type', '=', location.type);
+        if (locationTypes?.length) {
+          jobsQuery = jobsQuery.where((eb) => {
+            const ors: Expression<SqlBool>[] = [];
+
+            locationTypes.forEach((emt) =>
+              ors.push(eb('j.location_type', '=', emt)),
+            );
+
+            return eb.or(ors);
+          });
         }
       }
 
