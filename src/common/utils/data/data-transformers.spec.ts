@@ -1,4 +1,4 @@
-import { parseKeyString } from './transformers';
+import { parseKeyString } from './data-transformers';
 
 describe('parseKeyString', () => {
   it('should correctly parse keys enclosed in square brackets with single quotes', () => {
