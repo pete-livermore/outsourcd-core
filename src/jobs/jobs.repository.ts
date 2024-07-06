@@ -118,7 +118,8 @@ export class JobsRepository {
     }
   }
 
-  async getAll({ filters, populate, pagination }: FindJobsParamsDto) {
+  async getAll(params?: FindJobsParamsDto) {
+    const { filters, populate, pagination } = params || {};
     const { data, count } = await this.db.transaction().execute(async (trx) => {
       let jobsQuery = trx
         .selectFrom('jobs as j')
