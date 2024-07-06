@@ -4,5 +4,5 @@ import { IsOptional } from 'class-validator';
 export class FilterParams {
   @ApiPropertyOptional()
   @IsOptional()
-  filters?: { [key: string]: string | number | boolean };
+  filters?: { [key: string]: string | number | boolean | object };
 }
