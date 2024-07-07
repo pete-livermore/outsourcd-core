@@ -2,7 +2,7 @@ import { ApiProperty } from '@nestjs/swagger';
 import { IsArray } from 'class-validator';
 import { ApiPropertyOptional } from '@nestjs/swagger';
 import { IsEnum, IsOptional } from 'class-validator';
-import { Order } from '../constants';
+import { Order } from '../enums/order';
 import { PaginationParams } from './pagination-params';
 
 interface PageMetaDtoParameters {
