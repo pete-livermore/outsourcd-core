@@ -7,7 +7,7 @@ import { NestFactory, PartialGraphHost, Reflector } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 import * as fs from 'fs';
 import { AppModule } from './app.module';
-import { SnakeCaseToCamelCasePipe } from './common/pipes/snake-to-camel.pipe';
+import { ParseSnakeCasePipe } from './common/pipes/parse-snake-case.pipe';
 import { ConfigService } from '@nestjs/config';
 import { MicroserviceOptions } from '@nestjs/microservices';
 import { notificationsConfig } from './notifications/microservice.provider';
@@ -31,7 +31,7 @@ async function bootstrap() {
     defaultVersion: '1',
   });
   app.useGlobalPipes(
-    new SnakeCaseToCamelCasePipe(),
+    new ParseSnakeCasePipe(),
     new ValidationPipe({
       transform: true,
       whitelist: true,

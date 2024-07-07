@@ -1,10 +1,10 @@
-import { SnakeCaseToCamelCasePipe } from './snake-to-camel.pipe';
+import { ParseSnakeCasePipe } from './parse-snake-case.pipe';
 
-describe('SnakeCaseToCamelCasePipe', () => {
-  let snakeCaseToCamelCasePipe: SnakeCaseToCamelCasePipe;
+describe('ParseSnakeCasePipe', () => {
+  let parseSnakeCasePipe: ParseSnakeCasePipe;
 
   beforeEach(() => {
-    snakeCaseToCamelCasePipe = new SnakeCaseToCamelCasePipe();
+    parseSnakeCasePipe = new ParseSnakeCasePipe();
   });
 
   describe('when the transform method is called', () => {
@@ -14,7 +14,7 @@ describe('SnakeCaseToCamelCasePipe', () => {
           property_name: 'value',
           another_property: 'another value',
         };
-        const result = snakeCaseToCamelCasePipe.transform(value, {
+        const result = parseSnakeCasePipe.transform(value, {
           type: 'query',
         });
         expect(result).toStrictEqual({
@@ -30,7 +30,7 @@ describe('SnakeCaseToCamelCasePipe', () => {
           property_name: 'value',
           another_property: { nested_property: 'nested value' },
         };
-        const result = snakeCaseToCamelCasePipe.transform(value, {
+        const result = parseSnakeCasePipe.transform(value, {
           type: 'query',
         });
         expect(result).toStrictEqual({
