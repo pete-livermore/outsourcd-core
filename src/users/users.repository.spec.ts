@@ -8,9 +8,10 @@ import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
 import { DatabaseError } from 'pg';
 
 describe('The UsersRepository class', () => {
-  let executeTakeFirstOrThrowMock: jest.Mock;
+  const executeTakeFirstOrThrowMock = jest.fn();
   let createUserData: CreateUserDto;
   let usersRepository: UsersRepository;
+
   beforeEach(async () => {
     createUserData = {
       firstName: 'John',
@@ -20,7 +21,6 @@ describe('The UsersRepository class', () => {
       role: 1,
       isConfirmed: false,
     };
-    executeTakeFirstOrThrowMock = jest.fn();
     const module = await Test.createTestingModule({
       providers: [
         UsersRepository,
@@ -29,7 +29,7 @@ describe('The UsersRepository class', () => {
           useValue: {
             insertInto: jest.fn().mockReturnThis(),
             values: jest.fn().mockReturnThis(),
-            returning: jest.fn().mockReturnThis(), // Mocking the returning method
+            returning: jest.fn().mockReturnThis(),
             returningAll: jest.fn().mockReturnThis(),
             executeTakeFirstOrThrow: executeTakeFirstOrThrowMock,
           },
@@ -43,6 +43,7 @@ describe('The UsersRepository class', () => {
   describe('when the create method is called', () => {
     describe('and the database returns valid data', () => {
       let userModelData: UserModelData;
+
       beforeEach(() => {
         userModelData = {
           id: 1,
@@ -54,6 +55,7 @@ describe('The UsersRepository class', () => {
         };
         executeTakeFirstOrThrowMock.mockResolvedValue(userModelData);
       });
+
       it('should return an instance of the UserModel', async () => {
         const result = await usersRepository.create(createUserData);
 
