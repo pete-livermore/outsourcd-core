@@ -1,24 +1,118 @@
-import { parseKeyString } from './data-transformers';
+import {
+  camelToSnakeKeys,
+  snakeToCamel,
+  camelToSnake,
+  snakeToCamelKeys,
+} from './data-transformers';
 
-describe('parseKeyString', () => {
-  it('should correctly parse keys enclosed in square brackets with single quotes', () => {
-    const inputString1 = "['key1,'key2']";
-    const inputString2 = "['key1', 'key2']";
-    const inputString3 = "['key1',   'key2']";
+describe('camelToSnake', () => {
+  describe('when passed a string', () => {
+    it('should convert the string from camel to snake case', () => {
+      const camelCaseStr = 'thisIsCamelCase';
+      const result = camelToSnake(camelCaseStr);
+      expect(result).toBe('this_is_camel_case');
+    });
+  });
+});
 
-    expect(parseKeyString(inputString1)).toEqual(['key1', 'key2']);
-    expect(parseKeyString(inputString2)).toEqual(['key1', 'key2']);
-    expect(parseKeyString(inputString3)).toEqual(['key1', 'key2']);
+describe('snakeToCamel', () => {
+  describe('when passed a string', () => {
+    it('should convert the string from snake to camel case', () => {
+      const snakeCaseStr = 'this_is_snake_case';
+      const result = snakeToCamel(snakeCaseStr);
+      expect(result).toBe('thisIsSnakeCase');
+    });
+  });
+});
+
+describe('camelToSnakeKeys', () => {
+  describe('when passed an object with a nested object', () => {
+    let object: Record<string, any>;
+
+    beforeEach(() => {
+      object = {
+        property: 'value',
+        anotherProperty: { nestedProperty: 'nested value' },
+      };
+    });
+
+    it('should convert all camel case object keys to snake case', () => {
+      const result = camelToSnakeKeys(object);
+      expect(result).toStrictEqual({
+        property: 'value',
+        another_property: { nested_property: 'nested value' },
+      });
+    });
   });
 
-  it('should handle empty input', () => {
-    const inputString = '[]';
-    expect(parseKeyString(inputString)).toEqual([]);
+  describe('when passed an object with a nested array of objects', () => {
+    let object: Record<string, any>;
+
+    beforeEach(() => {
+      object = {
+        property: 'value',
+        anotherProperty: [
+          { nestedProperty: 'nested value' },
+          { anotherNestedProperty: 'another nested value' },
+        ],
+      };
+    });
+
+    it('should convert all camel case object keys to snake case', () => {
+      const result = camelToSnakeKeys(object);
+      expect(result).toStrictEqual({
+        property: 'value',
+        another_property: [
+          { nested_property: 'nested value' },
+          { another_nested_property: 'another nested value' },
+        ],
+      });
+    });
+  });
+});
+
+describe('snakeToCamelKeys', () => {
+  describe('when passed an object with a nested object', () => {
+    let object: Record<string, any>;
+
+    beforeEach(() => {
+      object = {
+        property: 52,
+        another_property: { nested_property: 'nestedValue' },
+      };
+    });
+
+    it('should convert all snake case object keys to camel case', () => {
+      const result = snakeToCamelKeys(object);
+      expect(result).toStrictEqual({
+        property: 52,
+        anotherProperty: { nestedProperty: 'nestedValue' },
+      });
+    });
   });
 
-  it('should handle no content within square brackets', () => {
-    const inputString = 'random text without brackets';
+  describe('when passed an object with a nested array of objects', () => {
+    let object: Record<string, any>;
 
-    expect(parseKeyString(inputString)).toEqual([]);
+    beforeEach(() => {
+      object = {
+        property: 'value',
+        another_property: [
+          { nested_property: 'nested value' },
+          { another_nested_property: 'another nested value' },
+        ],
+      };
+    });
+
+    it('should convert all snake case object keys to camel case', () => {
+      const result = snakeToCamelKeys(object);
+      expect(result).toStrictEqual({
+        property: 'value',
+        anotherProperty: [
+          { nestedProperty: 'nested value' },
+          { anotherNestedProperty: 'another nested value' },
+        ],
+      });
+    });
   });
 });
