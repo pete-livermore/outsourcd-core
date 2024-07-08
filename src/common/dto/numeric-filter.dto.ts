@@ -1,9 +1,9 @@
 import { Expose, Transform } from 'class-transformer';
-import {
-  FILTER_OPERATOR_PARAMS,
-  FilterOperatorParam,
-} from '../constants/filter-operators-params';
 import { IsIn, IsInt, IsString, Min } from 'class-validator';
+import {
+  NUMERIC_OPERATORS,
+  NumericOperator,
+} from '../constants/filter-operator-map';
 
 export class NumericFilterDto {
   @Expose()
@@ -16,6 +16,6 @@ export class NumericFilterDto {
 
   @Expose()
   @IsString()
-  @IsIn(FILTER_OPERATOR_PARAMS)
-  operator: FilterOperatorParam;
+  @IsIn(NUMERIC_OPERATORS)
+  operator: NumericOperator;
 }
