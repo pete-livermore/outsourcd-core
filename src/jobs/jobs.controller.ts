@@ -18,6 +18,7 @@ import { PopulateParams } from 'src/common/dto/populate-params';
 import { PaginationParams } from 'src/common/dto/pagination-params';
 import { JobApplicationsService } from './job-applications.service';
 import { PostJobApplicationBodyDto } from './dto/post-job-application-body.dto';
+import { ParseSnakeCasePipe } from 'src/common/pipes/parse-snake-case.pipe';
 
 @Controller('jobs')
 export class JobsController {
@@ -28,8 +29,9 @@ export class JobsController {
 
   @Get()
   async getAll(
-    @Query() { filters }: FilterParams = {},
-    @Query() { populate }: PopulateParams = {},
+    @Query(new ParseSnakeCasePipe())
+    { filters }: FilterParams = {},
+    @Query(new ParseSnakeCasePipe()) { populate }: PopulateParams = {},
     @Query() { limit, offset }: PaginationParams,
   ) {
     const { jobs, count } = await this.jobsService.getAll({
