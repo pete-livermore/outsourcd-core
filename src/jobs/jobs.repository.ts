@@ -8,6 +8,7 @@ import { jsonArrayFrom, jsonObjectFrom } from 'kysely/helpers/postgres';
 import { Expression, ExpressionBuilder, SqlBool, sql } from 'kysely';
 import { Jobs } from 'src/kysely-types';
 import { PopulateJobDto } from './dto/populate-job.dto';
+import { DATE_OPERATOR_MAP } from 'src/common/constants/filter-operator-map';
 
 type JobTableExpression = ExpressionBuilder<
   Tables & {
@@ -148,7 +149,7 @@ export class JobsRepository {
       }
 
       if (filters) {
-        const { employmentTypes, locationTypes } = filters;
+        const { employmentTypes, locationTypes, startDate } = filters;
 
         if (employmentTypes?.length) {
           jobsQuery = jobsQuery.where((eb) => {
@@ -172,6 +173,15 @@ export class JobsRepository {
 
             return eb.or(ors);
           });
+        }
+
+        if (startDate) {
+          const operator = DATE_OPERATOR_MAP[startDate.operator];
+          jobsQuery = jobsQuery.where(
+            'j.start_date',
+            operator,
+            startDate.value,
+          );
         }
       }
 
