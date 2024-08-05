@@ -46,7 +46,10 @@ export class UsersController {
   @Get('me')
   async findAuthenticatedUser(@Req() request: Request) {
     const { id } = request.user;
-    const data = await this.usersService.findById(id, { role: true });
+    const data = await this.usersService.findById(id, {
+      role: true,
+      image: true,
+    });
     return { data };
   }
 
