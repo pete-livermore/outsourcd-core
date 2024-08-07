@@ -64,6 +64,7 @@ describe('AuthService', () => {
     password: hashedPassword,
     firstName: 'test',
     lastName: 'user',
+    biography: 'biography',
     role: 2,
     createdAt: new Date('2024-06-14 13:36:58.171'),
     updatedAt: new Date('2024-06-14 13:36:58.171'),

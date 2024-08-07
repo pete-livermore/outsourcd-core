@@ -63,6 +63,7 @@ export class UsersRepository {
           'email',
           'first_name',
           'last_name',
+          'biography',
           'role_id as role',
           'created_at',
           'updated_at',
@@ -99,6 +100,7 @@ export class UsersRepository {
         'u.password',
         'u.first_name',
         'u.last_name',
+        'u.biography',
         'u.created_at',
         'u.updated_at',
       ])
@@ -125,6 +127,7 @@ export class UsersRepository {
         'u.password',
         'u.first_name',
         'u.last_name',
+        'u.biography',
         'u.created_at',
         'u.updated_at',
       ])
@@ -149,6 +152,7 @@ export class UsersRepository {
           'u.password',
           'u.first_name',
           'u.last_name',
+          'u.biography',
           'u.created_at',
           'u.updated_at',
         ])
@@ -212,6 +216,7 @@ export class UsersRepository {
         'u.email',
         'u.first_name',
         'u.last_name',
+        'u.biography',
         'u.created_at',
         'u.updated_at',
         'u.role_id as role',
