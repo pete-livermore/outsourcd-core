@@ -1,4 +1,4 @@
-import { BadRequestException, Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable, Logger } from '@nestjs/common';
 import {
   DeliveryType,
   ResourceType,
@@ -18,6 +18,8 @@ interface DestroyOptions {
 
 @Injectable()
 export class UploadsService {
+  private readonly Logger = new Logger(UploadsService.name);
+
   constructor(private readonly fileValidationService: FileValidationService) {}
 
   async upload(file: Express.Multer.File, options?: UploadApiOptions) {
@@ -27,19 +29,23 @@ export class UploadsService {
 
     await this.fileValidationService.validate(file);
 
-    const tempDir = 'temp';
-    const tempFilePath =
-      path.join(__dirname, '..', tempDir) + file.originalname;
-    await fs.promises.writeFile(tempFilePath, file.buffer);
+    try {
+      const tempDir = 'temp';
+      const tempFilePath =
+        path.join(__dirname, '..', tempDir) + file.originalname;
+      await fs.promises.writeFile(tempFilePath, file.buffer);
 
-    const uploadResponse = await cloudinary.uploader.upload(tempFilePath, {
-      ...options,
-      folder: UPLOAD_FOLDER_NAME,
-    });
+      const uploadResponse = await cloudinary.uploader.upload(tempFilePath, {
+        ...options,
+        folder: UPLOAD_FOLDER_NAME,
+      });
 
-    await fs.promises.unlink(tempFilePath);
-
-    return uploadResponse;
+      await fs.promises.unlink(tempFilePath);
+      return uploadResponse;
+    } catch (e) {
+      this.Logger.error(`problem uploading file`, e);
+      throw e;
+    }
   }
 
   async delete(publicId: string, options?: DestroyOptions) {
