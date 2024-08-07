@@ -6,19 +6,18 @@ import {
   HttpCode,
   NotFoundException,
   Param,
-  ParseFilePipe,
   Post,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
 
-import { fileValidators } from './constants/validators';
 import { UploadsService } from './uploads.service';
 import { FilesService } from './files.service';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { FileMetadataDto } from './dto/file-metadata.dto';
 import { CreateFileDto } from './dto/create-file.dto';
 import { plainToInstance } from 'class-transformer';
+import { DynamicParseFilePipe } from 'src/common/pipes/parse-file-pipe';
 
 @Controller('uploads')
 export class UploadsController {
@@ -30,11 +29,7 @@ export class UploadsController {
   @Post('file')
   @UseInterceptors(FileInterceptor('file'))
   async uploadFile(
-    @UploadedFile(
-      new ParseFilePipe({
-        validators: fileValidators,
-      }),
-    )
+    @UploadedFile(DynamicParseFilePipe)
     file: Express.Multer.File,
     @Body() body: FileMetadataDto,
   ) {
