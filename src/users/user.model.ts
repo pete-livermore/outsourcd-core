@@ -1,4 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
+import { Selectable } from 'kysely';
+import { Tables } from 'src/database/database';
 
 interface PopulatedRole {
   id: number;
@@ -10,16 +12,10 @@ interface PopulatedImage {
   url: string;
 }
 
-export interface UserModelData {
-  id: number;
-  first_name: string;
-  last_name: string;
-  email: string;
+export type UserModelData = Partial<Selectable<Tables['users']>> & {
   role?: number | PopulatedRole;
   profile_image?: PopulatedImage | null;
-  created_at: Date;
-  updated_at: Date;
-}
+};
 
 export class User {
   id: number;
@@ -29,6 +25,7 @@ export class User {
   @ApiProperty()
   email: string;
 
+  biography: string;
   role: number | PopulatedRole;
   profileImage?: PopulatedImage | null;
   createdAt: Date;
@@ -43,6 +40,7 @@ export class User {
     this.createdAt = data.created_at;
     this.updatedAt = data.updated_at;
     this.profileImage = data.profile_image;
+    this.biography = data.biography;
   }
 }
 
