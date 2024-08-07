@@ -5,6 +5,7 @@ import {
   HttpCode,
   Param,
   ParseIntPipe,
+  Patch,
   Post,
   Put,
   Query,
@@ -19,6 +20,7 @@ import { FilterParams } from 'src/common/dto/filter-params';
 import { PaginationParams } from 'src/common/dto/pagination-params';
 import { Page, PageMetaDto } from 'src/common/dto/page.dto';
 import { Request } from 'src/common/interfaces/request';
+import { ReplaceUserDto } from './dto/replace-user.dto';
 
 @Controller('users')
 export class UsersController {
@@ -70,6 +72,14 @@ export class UsersController {
 
   @Put(':id')
   async put(
+    @Param() params: { id: number },
+    @Body() replaceUserDto: ReplaceUserDto,
+  ) {
+    return this.usersService.update(params.id, replaceUserDto);
+  }
+
+  @Patch(':id')
+  async patch(
     @Param() params: { id: number },
     @Body() updateUserDto: UpdateUserDto,
   ) {
