@@ -4,7 +4,6 @@ import {
   Delete,
   Get,
   HttpCode,
-  Logger,
   NotFoundException,
   Param,
   ParseFilePipe,
@@ -23,8 +22,6 @@ import { plainToInstance } from 'class-transformer';
 
 @Controller('uploads')
 export class UploadsController {
-  private readonly Logger = new Logger(UploadsController.name);
-
   constructor(
     private uploadsService: UploadsService,
     private filesService: FilesService,
@@ -60,8 +57,7 @@ export class UploadsController {
       const file = await this.filesService.create(fileDataToSave);
       return { data: file };
     } catch (e) {
-      this.Logger.error(`problem saving file ${name} to the database`, e);
-      await this.uploadsService.delete(public_id);
+      this.uploadsService.delete(public_id);
       throw e;
     }
   }
