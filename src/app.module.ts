@@ -22,6 +22,7 @@ import { BullModule } from '@nestjs/bull';
 import { JobsModule } from './jobs/jobs.module';
 import { CompaniesModule } from './companies/companies.module';
 import { NotificationsModule } from './notifications/notifications.module';
+import { createDatabase } from './database/database-config.factory';
 
 @Module({
   imports: [
@@ -31,13 +32,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     DatabaseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: (configService: ConfigService) => ({
-        host: configService.get<string>('POSTGRES_HOST'),
-        port: configService.get<number>('POSTGRES_PORT'),
-        user: configService.get<string>('POSTGRES_USER'),
-        password: configService.get<string>('POSTGRES_PASSWORD'),
-        database: configService.get<string>('POSTGRES_DB'),
-      }),
+      useFactory: createDatabase,
     }),
     CacheModule.registerAsync<RedisClientOptions>({
       isGlobal: true,
