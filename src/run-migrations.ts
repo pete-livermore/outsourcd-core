@@ -10,20 +10,14 @@ import {
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
 import { Database } from './database/database';
+import { createDatabase } from './database/database-config.factory';
 
 config();
-const configService = new ConfigService();
 
-async function migrateToLatest() {
+export async function migrateToLatest(configService: ConfigService) {
   const db = new Kysely<Database>({
     dialect: new PostgresDialect({
-      pool: new Pool({
-        host: configService.get('POSTGRES_HOST'),
-        port: configService.get('POSTGRES_PORT'),
-        user: configService.get('POSTGRES_USER'),
-        password: configService.get('POSTGRES_PASSWORD'),
-        database: configService.get('POSTGRES_DB'),
-      }),
+      pool: new Pool(createDatabase(configService)),
     }),
   });
 
@@ -56,4 +50,5 @@ async function migrateToLatest() {
   await db.destroy();
 }
 
-migrateToLatest();
+const configService = new ConfigService();
+migrateToLatest(configService);
