@@ -10,7 +10,7 @@ interface EnvVars {
   JWT_SECRET: string;
   JWT_EXPIRY: number;
   MAX_UPLOAD_FILE_SIZE: number;
-  NODE_ENV: 'development' | 'production' | 'test' | 'provision';
+  NODE_ENV: 'development' | 'production' | 'test';
   OPEN_API_TITLE: string;
   OPEN_API_DESCRIPTION: string;
   PASSWORD_SALT_ROUNDS: number;
@@ -36,7 +36,7 @@ export const envValidationSchema = Joi.object<EnvVars>({
   JWT_EXPIRY: Joi.number().required(),
   MAX_UPLOAD_FILE_SIZE: Joi.number().required(),
   NODE_ENV: Joi.string()
-    .valid('development', 'production', 'test', 'provision')
+    .valid('development', 'production', 'test')
     .default('development'),
   OPEN_API_DESCRIPTION: Joi.string().required(),
   OPEN_API_TITLE: Joi.string().required(),
