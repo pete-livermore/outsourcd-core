@@ -1,5 +1,6 @@
 const { Kysely, PostgresDialect, sql } = require('kysely');
 const { Pool } = require('pg');
+const roles = require('../src/roles-permissions/seeds/roles.json');
 const users = require('../src/users/seeds/users.json');
 const sectors = require('../src/companies/seeds/sectors.json');
 const companies = require('../src/companies/seeds/companies.json');
@@ -10,7 +11,7 @@ const db = new Kysely({
   dialect: new PostgresDialect({
     pool: new Pool({
       host: process.env.POSTGRES_HOST,
-      port: process.env.POSTGRES_PORT,
+      port: parseInt(process.env.POSTGRES_PORT),
       user: process.env.POSTGRES_USER,
       password: process.env.POSTGRES_PASSWORD,
       database: process.env.POSTGRES_DB,
@@ -20,6 +21,7 @@ const db = new Kysely({
 
 async function seed() {
   await db.transaction().execute(async (trx) => {
+    await trx.insertInto('roles').values(roles).execute();
     await trx.insertInto('users').values(users).execute();
     await trx.insertInto('sectors').values(sectors).execute();
     await trx.insertInto('companies').values(companies).execute();
