@@ -9,13 +9,14 @@ export async function up(database: Kysely<unknown>): Promise<void> {
         .notNull()
         .check(sql`action IN ('create', 'read', 'update', 'delete')`),
     )
-    .addColumn('entity', 'text', (col) => col.notNull())
+    .addColumn('resource', 'text', (col) => col.notNull())
     .addColumn('created_at', 'timestamp', (cb) =>
       cb.notNull().defaultTo(sql`now()`),
     )
     .addColumn('updated_at', 'timestamp', (cb) =>
       cb.notNull().defaultTo(sql`now()`),
     )
+    .addUniqueConstraint('unique_action_resource', ['action', 'resource'])
     .execute();
 
   await database.schema
