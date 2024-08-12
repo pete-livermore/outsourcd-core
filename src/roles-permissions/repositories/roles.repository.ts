@@ -3,6 +3,7 @@ import { CreateRoleDto } from '../dto/create-role.dto';
 import { Role } from '../models/role.model';
 import { PopulateRoleDto } from '../dto/find-roles-params.dto';
 import { Injectable } from '@nestjs/common';
+import { sql } from 'kysely';
 
 @Injectable()
 export class RolesRepository {
@@ -28,7 +29,15 @@ export class RolesRepository {
       query = query
         .leftJoin('roles_permissions as rp', 'rp.role_id', 'r.id')
         .leftJoin('permissions as p', 'p.id', 'rp.permission_id')
-        .select((eb) => eb.fn.agg('array_agg', ['p.id']).as('permissions'))
+        .select(
+          sql<{ id: number; resource: string; action: string }>`  json_agg(
+          json_build_object(
+            'id', p.id,
+            'resource', p.resource,
+            'action', p.action
+          )
+        )`.as('permissions'),
+        )
         .groupBy([
           'r.id',
           'r.created_at',
