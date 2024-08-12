@@ -18,8 +18,7 @@ describe('AppController (e2e)', () => {
     app = moduleFixture.createNestApplication();
     await app.init();
 
-    databaseConnection = app.select(DatabaseModule).get(Database);
-    console.log('dbConnection =>', databaseConnection);
+    databaseConnection = app.get(Database);
 
     const loginResponse = await request(app.getHttpServer())
       .post('/auth/login')
