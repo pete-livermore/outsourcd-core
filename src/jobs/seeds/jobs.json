@@ -13,7 +13,8 @@
     "country": "US",
     "coordinates": [-122.4194, 37.7749],
     "weekly_hours": 40,
-    "company_id": 1
+    "company_id": 1,
+    "employment_type": "permanent"
   },
   {
     "title": "Project Manager",
@@ -28,7 +29,8 @@
     "country": "DE",
     "coordinates": [13.405, 52.52],
     "weekly_hours": 35,
-    "company_id": 2
+    "company_id": 2,
+    "employment_type": "permanent"
   },
   {
     "title": "Data Analyst",
@@ -43,7 +45,8 @@
     "country": "GB",
     "coordinates": [-0.1276, 51.5074],
     "weekly_hours": 30,
-    "company_id": 3
+    "company_id": 3,
+    "employment_type": "contract"
   },
   {
     "title": "UX/UI Designer",
@@ -58,7 +61,8 @@
     "country": "US",
     "coordinates": [-74.006, 40.7128],
     "weekly_hours": 40,
-    "company_id": 4
+    "company_id": 4,
+    "employment_type": "permanent"
   },
   {
     "title": "Marketing Specialist",
@@ -73,7 +77,8 @@
     "country": "NL",
     "coordinates": [4.9041, 52.3676],
     "weekly_hours": 40,
-    "company_id": 5
+    "company_id": 5,
+    "employment_type": "temporary"
   },
   {
     "title": "DevOps Engineer",
@@ -88,7 +93,8 @@
     "country": "US",
     "coordinates": [-97.7431, 30.2672],
     "weekly_hours": 40,
-    "company_id": 6
+    "company_id": 6,
+    "employment_type": "permanent"
   },
   {
     "title": "Graphic Designer",
@@ -103,7 +109,8 @@
     "country": "FR",
     "coordinates": [2.3522, 48.8566],
     "weekly_hours": 35,
-    "company_id": 7
+    "company_id": 7,
+    "employment_type": "contract"
   },
   {
     "title": "Product Manager",
@@ -118,7 +125,8 @@
     "country": "GB",
     "coordinates": [-2.2426, 53.4808],
     "weekly_hours": 38,
-    "company_id": 8
+    "company_id": 8,
+    "employment_type": "permanent"
   },
   {
     "title": "Content Writer",
@@ -133,7 +141,8 @@
     "country": "US",
     "coordinates": [-118.2437, 34.0522],
     "weekly_hours": 30,
-    "company_id": 9
+    "company_id": 9,
+    "employment_type": "permanent"
   },
   {
     "title": "HR Manager",
@@ -148,6 +157,7 @@
     "country": "ES",
     "coordinates": [2.1734, 41.3851],
     "weekly_hours": 40,
-    "company_id": 10
+    "company_id": 10,
+    "employment_type": "permanent"
   }
 ]
