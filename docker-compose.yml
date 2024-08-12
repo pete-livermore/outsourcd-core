@@ -11,9 +11,23 @@ services:
       POSTGRES_USER: ${POSTGRES_USER}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
-      - '5439:5432'
+      - '${POSTGRES_PORT}:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/data
+
+  postgres_test:
+    image: postgis/postgis:16-3.4
+    container_name: outsourcd_db_test
+    env_file:
+      - .env
+    environment:
+      POSTGRES_DB: ${POSTGRES_TEST_DB}
+      POSTGRES_USER: ${POSTGRES_TEST_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_TEST_PASSWORD}
+    ports:
+      - '${POSTGRES_TEST_PORT}:5432'
+    volumes:
+      - postgres_test_data:/var/lib/postgresql/data
 
   redis_main:
     image: redis:latest
@@ -29,3 +43,4 @@ services:
 
 volumes:
   postgres_data:
+  postgres_test_data:
