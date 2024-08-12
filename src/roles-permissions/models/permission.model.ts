@@ -1,7 +1,7 @@
 export interface PermissionModelData {
   id: number;
   action: string;
-  entity: string;
+  resource: string;
   created_at: Date;
   updated_at: Date;
 }
@@ -9,13 +9,13 @@ export interface PermissionModelData {
 export class Permission {
   id: number;
   action: string;
-  entity: string;
+  resource: string;
   createdAt: Date;
   updatedAt: Date;
   constructor(data: PermissionModelData) {
     this.id = data.id;
     this.action = data.action;
-    this.entity = data.entity;
+    this.resource = data.resource;
     this.createdAt = data.created_at;
     this.updatedAt = data.updated_at;
   }
