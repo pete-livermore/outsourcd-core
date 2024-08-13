@@ -149,7 +149,8 @@ export class JobsRepository {
       }
 
       if (filters) {
-        const { employmentTypes, locationTypes, startDate } = filters;
+        const { employmentTypes, locationTypes, startDate, withinDistance } =
+          filters;
 
         if (employmentTypes?.length) {
           jobsQuery = jobsQuery.where((eb) => {
@@ -182,6 +183,12 @@ export class JobsRepository {
             operator,
             startDate.value,
           );
+        }
+
+        if (withinDistance) {
+          const [lat, long] = withinDistance.coordinates;
+          const postGis = sql<boolean>`ST_DWithin(coordinates::geography,ST_MakePoint(${lat},${long}),${withinDistance.value})`;
+          jobsQuery = jobsQuery.where(postGis);
         }
       }
 
