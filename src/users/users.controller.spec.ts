@@ -104,6 +104,7 @@ describe('UsersController', () => {
         first_name: 'Miranda',
         last_name: 'Anas',
         role: 3,
+        biography: '',
         created_at: new Date(),
         updated_at: new Date(),
       });

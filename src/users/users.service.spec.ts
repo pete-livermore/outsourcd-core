@@ -95,6 +95,7 @@ describe('UsersService', () => {
           email: 'test@example.com',
           first_name: 'test',
           last_name: 'User',
+          biography: '',
           role: 2,
           created_at: new Date(),
           updated_at: new Date(),
@@ -146,6 +147,7 @@ describe('UsersService', () => {
           first_name: 'test',
           last_name: 'User',
           role: 2,
+          biography: 'lorem ipsum',
           created_at: new Date(),
           updated_at: new Date(),
         });

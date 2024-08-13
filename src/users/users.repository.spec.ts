@@ -50,6 +50,7 @@ describe('The UsersRepository class', () => {
           first_name: 'John',
           last_name: 'Smith',
           email: 'john@smith.com',
+          biography: 'here is a biography',
           created_at: new Date(),
           updated_at: new Date(),
         };
