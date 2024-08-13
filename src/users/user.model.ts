@@ -12,7 +12,16 @@ interface PopulatedImage {
   url: string;
 }
 
-export type UserModelData = Partial<Selectable<Tables['users']>> & {
+type DatabaseTable = Selectable<Tables['users']>;
+
+export type UserModelData = {
+  id: DatabaseTable['id'];
+  first_name: DatabaseTable['first_name'];
+  last_name: DatabaseTable['last_name'];
+  email: DatabaseTable['email'];
+  biography: DatabaseTable['biography'];
+  created_at: DatabaseTable['created_at'];
+  updated_at: DatabaseTable['updated_at'];
   role?: number | PopulatedRole;
   profile_image?: PopulatedImage | null;
 };
