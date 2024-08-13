@@ -1,3 +1,6 @@
+import { Selectable } from 'kysely';
+import { Tables } from 'src/database/database';
+
 interface CompanyRelation {
   id: number;
   name: string;
@@ -13,16 +16,20 @@ export interface JobSalary {
   period: string;
 }
 
+type DatabaseTable = Selectable<Tables['jobs']>;
+
 export class JobModelData {
-  id: number;
-  title: string;
-  description: string;
+  id: DatabaseTable['id'];
+  title: DatabaseTable['title'];
+  description: DatabaseTable['description'];
   company?: CompanyRelation | null;
   salary: JobSalary;
-  location_type: string;
-  start_date: Date;
+  location_type: DatabaseTable['location_type'];
+  start_date: DatabaseTable['start_date'];
   applications?: JobApplicationRelation[];
-  employment_type: string;
+  employment_type: DatabaseTable['employment_type'];
+  city: DatabaseTable['city'];
+  country: DatabaseTable['country'];
 }
 
 export class Job {
@@ -35,6 +42,8 @@ export class Job {
   startDate: string;
   applications: { userId: number }[];
   employmentType: string;
+  city: string;
+  country: string;
 
   constructor(data: JobModelData) {
     this.id = data.id;
@@ -43,6 +52,8 @@ export class Job {
     this.company = data.company;
     this.locationType = data.location_type;
     this.salary = data.salary;
+    this.city = data.city;
+    this.country = data.country;
     this.employmentType = data.employment_type;
     this.startDate = data.start_date.toISOString();
     this.applications = data.applications?.map((app) => ({
