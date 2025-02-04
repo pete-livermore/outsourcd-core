@@ -1,4 +1,4 @@
-import { Kysely } from 'kysely';
+import { Kysely, Selectable } from 'kysely';
 import {
   Files as FilesTable,
   Permissions as PermissionsTable,
@@ -30,3 +30,8 @@ export interface Tables {
 }
 
 export class Database extends Kysely<Tables> {}
+
+export type CompanyRecord = Selectable<Tables['companies']>;
+export type FileRecord = Selectable<Tables['files']>;
+export type JobRecord = Selectable<Tables['jobs']>;
+export type JobApplicationRecord = Selectable<Tables['job_applications']>;
