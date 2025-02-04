@@ -7,13 +7,12 @@ import { envValidationSchema } from 'src/config/validation-schema';
 import { NestjsFormDataModule } from 'nestjs-form-data';
 import { join } from 'path';
 import type { RedisClientOptions } from 'redis';
-import { redisStore } from 'cache-manager-redis-yet';
 import { AdminModule } from './admin/admin.module';
 import { SettingsService } from './admin/services/settings.service';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 import { AuthModule } from './auth/auth.module';
-import { DatabaseModule } from './database/database.module';
+import { DatabaseModule } from './infrastructure/database/database.module';
 import { RolesPermissionsModule } from './roles-permissions/roles-permissions.module';
 import { UploadsModule } from './uploads/uploads.module';
 import { UsersModule } from './users/users.module';
@@ -22,7 +21,8 @@ import { BullModule } from '@nestjs/bull';
 import { JobsModule } from './jobs/jobs.module';
 import { CompaniesModule } from './companies/companies.module';
 import { NotificationsModule } from './notifications/notifications.module';
-import { createDatabase } from './database/database-config.factory';
+import { createDatabaseConfig } from './infrastructure/database/database-config.factory';
+import { createCacheConfig } from './infrastructure/cache/cache-config.factory';
 
 @Module({
   imports: [
@@ -32,28 +32,13 @@ import { createDatabase } from './database/database-config.factory';
     DatabaseModule.forRootAsync({
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: createDatabase,
+      useFactory: createDatabaseConfig,
     }),
     CacheModule.registerAsync<RedisClientOptions>({
       isGlobal: true,
       imports: [ConfigModule],
       inject: [ConfigService],
-      useFactory: async (configService: ConfigService) => {
-        try {
-          const store = await redisStore({
-            ttl: configService.get('CACHE_TTL'),
-            socket: {
-              host: configService.get<string>('REDIS_HOST'),
-              port: configService.get<number>('REDIS_CACHE_PORT'),
-            },
-          });
-          return {
-            store,
-          };
-        } catch (err) {
-          throw new Error(`Failed to connect to Redis instance`);
-        }
-      },
+      useFactory: createCacheConfig,
     }),
     BullModule.forRootAsync({
       imports: [ConfigModule],
