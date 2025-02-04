@@ -1,4 +1,4 @@
-import { Database, Tables } from '../database/database';
+import { Database, Tables } from '../infrastructure/database/database';
 import { Injectable } from '@nestjs/common';
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder } from 'kysely';

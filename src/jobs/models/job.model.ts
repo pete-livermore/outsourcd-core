@@ -1,13 +1,21 @@
-import { Selectable } from 'kysely';
-import { Tables } from 'src/database/database';
+import {
+  CompanyRecord,
+  FileRecord,
+  JobRecord,
+  JobApplicationRecord,
+} from 'src/infrastructure/database/database';
 
 interface CompanyRelation {
-  id: number;
-  name: string;
+  id: CompanyRecord['id'];
+  name: CompanyRecord['name'];
+  image?: {
+    id: FileRecord['id'];
+    url: FileRecord['url'];
+  };
 }
 
 export interface JobApplicationRelation {
-  user_id: number;
+  user_id: JobApplicationRecord['user_id'];
 }
 
 export interface JobSalary {
@@ -16,20 +24,18 @@ export interface JobSalary {
   period: string;
 }
 
-type DatabaseTable = Selectable<Tables['jobs']>;
-
 export class JobModelData {
-  id: DatabaseTable['id'];
-  title: DatabaseTable['title'];
-  description: DatabaseTable['description'];
+  id: JobRecord['id'];
+  title: JobRecord['title'];
+  description: JobRecord['description'];
   company?: CompanyRelation | null;
   salary: JobSalary;
-  location_type: DatabaseTable['location_type'];
-  start_date: DatabaseTable['start_date'];
+  location_type: JobRecord['location_type'];
+  start_date: JobRecord['start_date'];
   applications?: JobApplicationRelation[];
-  employment_type: DatabaseTable['employment_type'];
-  city: DatabaseTable['city'];
-  country: DatabaseTable['country'];
+  employment_type: JobRecord['employment_type'];
+  city: JobRecord['city'];
+  country: JobRecord['country'];
 }
 
 export class Job {

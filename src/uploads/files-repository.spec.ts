@@ -1,7 +1,7 @@
 import { Test } from '@nestjs/testing';
 import { FilesRepository } from './files.repository';
 import { ConfigModule } from '@nestjs/config';
-import { Database } from 'src/database/database';
+import { Database } from 'src/infrastructure/database/database';
 import { UploadFile, UploadFileModelData } from './models/upload-file.model';
 import { CreateFileDto } from './dto/create-file.dto';
 import { plainToInstance } from 'class-transformer';

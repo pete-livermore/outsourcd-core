@@ -1,9 +1,9 @@
-import { Database } from '../database/database';
+import { Database } from '../infrastructure/database/database';
 import { ConflictException, Injectable } from '@nestjs/common';
 import { CreateJobApplicationDto } from './dto/create-job-application.dto';
 import { JobApplication } from './models/job-application.model';
-import { isDatabaseError } from 'src/database/error';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
+import { isDatabaseError } from 'src/infrastructure/database/error';
+import { PostgresErrorCode } from 'src/infrastructure/database/postgres-error-code.enum';
 
 @Injectable()
 export class JobApplicationsRepository {

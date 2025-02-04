@@ -2,7 +2,7 @@ import { UnsanitizedUser, User } from './user.model';
 import { CreateUserDto } from './dto/create-user.dto';
 import { FindUsersParamsDto } from './dto/find-users-params.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { Database, Tables } from '../database/database';
+import { Database, Tables } from '../infrastructure/database/database';
 import {
   BadRequestException,
   ConflictException,
@@ -11,8 +11,8 @@ import {
 import { jsonObjectFrom } from 'kysely/helpers/postgres';
 import { ExpressionBuilder } from 'kysely';
 import { Users } from 'src/kysely-types';
-import { PostgresErrorCode } from 'src/database/postgres-error-code.enum';
-import { isDatabaseError } from 'src/database/error';
+import { PostgresErrorCode } from 'src/infrastructure/database/postgres-error-code.enum';
+import { isDatabaseError } from 'src/infrastructure/database/error';
 import { PopulateUserDto } from './dto/populate-user.dto';
 
 type UserTableExpression = ExpressionBuilder<

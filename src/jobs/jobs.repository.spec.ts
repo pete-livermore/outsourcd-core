@@ -1,4 +1,4 @@
-import { Database } from 'src/database/database';
+import { Database } from 'src/infrastructure/database/database';
 import { JobsRepository } from './jobs.repository';
 import { Test, TestingModule } from '@nestjs/testing';
 import { Job } from './models/job.model';

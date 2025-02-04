@@ -9,8 +9,8 @@ import {
 } from 'kysely';
 import { ConfigService } from '@nestjs/config';
 import { config } from 'dotenv';
-import { Database } from './database/database';
-import { createDatabase } from './database/database-config.factory';
+import { Database } from './infrastructure/database/database';
+import { createDatabase } from './infrastructure/database/database-config.factory';
 
 config();
 

@@ -6,10 +6,10 @@ import * as users from './fixtures/users.json';
 import * as roles from './fixtures/roles.json';
 import * as permissions from './fixtures/permissions.json';
 import * as rolesPermissions from './fixtures/roles-permissions.json';
-import { Database } from 'src/database/database';
+import { Database } from 'src/infrastructure/database/database';
 import { migrateToLatest } from 'src/run-migrations';
 import { ConfigService } from '@nestjs/config';
-import { dropDatabase } from 'src/database/utils/drop-database';
+import { dropDatabase } from 'src/infrastructure/database/utils/drop-database';
 
 async function seedData(database: Database) {
   await database.insertInto('permissions').values(permissions).execute();

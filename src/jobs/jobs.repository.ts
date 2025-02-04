@@ -2,7 +2,7 @@ import { Job, JobSalary } from './models/job.model';
 import { CreateJobDto } from './dto/create-job.dto';
 import { FindJobsParamsDto } from './dto/find-jobs-params.dto';
 import { UpdateJobDto } from './dto/update-job.dto';
-import { Database, Tables } from '../database/database';
+import { Database, Tables } from '../infrastructure/database/database';
 import { Injectable } from '@nestjs/common';
 import { jsonArrayFrom, jsonObjectFrom } from 'kysely/helpers/postgres';
 import { Expression, ExpressionBuilder, SqlBool, sql } from 'kysely';
@@ -21,10 +21,19 @@ type JobTableExpression = ExpressionBuilder<
 export class JobsRepository {
   constructor(private readonly db: Database) {}
 
-  private withCompany(eb: JobTableExpression) {
+  private withCompany(
+    eb: JobTableExpression,
+    options?: { includeImage: boolean },
+  ) {
+    const { includeImage } = options ?? { includeImage: false };
     return jsonObjectFrom(
       eb
         .selectFrom('companies as c')
+        .$if(includeImage, (qb) =>
+          qb
+            .leftJoin('files', 'files.id', 'c.image_id')
+            .select(['files.url as logoUrl']),
+        )
         .select(['c.id', 'c.name'])
         .whereRef('j.company_id', '=', 'c.id'),
     ).as('company');
@@ -142,7 +151,9 @@ export class JobsRepository {
           this.selectSalary(),
         ])
 
-        .$if(populate?.company, (qb) => qb.select((eb) => this.withCompany(eb)))
+        .$if(populate?.company, (qb) =>
+          qb.select((eb) => this.withCompany(eb, { includeImage: true })),
+        )
         .$if(populate?.applications, (qb) =>
           qb.select((eb) => this.withApplications(eb)),
         )

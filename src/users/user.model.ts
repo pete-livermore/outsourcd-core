@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Selectable } from 'kysely';
-import { Tables } from 'src/database/database';
+import { Tables } from 'src/infrastructure/database/database';
 
 interface PopulatedRole {
   id: number;
